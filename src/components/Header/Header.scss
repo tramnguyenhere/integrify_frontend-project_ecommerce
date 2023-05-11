@@ -1,0 +1,66 @@
+@use '../../assets/styles/variables/colors';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 100px;
+    
+    &__brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        &__logo {
+            width: 2rem;
+        }
+
+        &__name {
+            margin: 0;
+            width: 100%;
+            font-size: 2rem;
+            color: colors.$color--navy
+        }
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .navigation__item {
+        margin: 0 1rem;
+        color: colors.$color--grey;
+        font-weight: 500;
+        cursor: pointer;
+
+        &:hover {
+            color: colors.$color--blue; 
+            transition: all .3s ease-in-out;
+        }
+    }
+
+    .navigation--right {
+        display: flex;
+        justify-content: flex-end;
+
+        #cart__icon {
+            position: relative;
+
+            .cart__badge {
+                position: absolute;
+                top: -8px;
+                left: 10px;
+                background: colors.$color--navy;
+                font-size: .7rem;
+                padding: 2px 5px;
+                border-radius: 50%;
+                color: colors.$color--white;
+            }
+        }
+    }
+}
+
+

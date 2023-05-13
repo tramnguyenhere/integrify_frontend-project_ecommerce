@@ -1,0 +1,8 @@
+@use '../../assets/styles/variables/colors';
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background: colors.$color--white;
+}

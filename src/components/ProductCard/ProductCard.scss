@@ -1,0 +1,74 @@
+@use '../../assets/styles/variables/colors';
+
+.product-card {
+    max-width: 20vw;
+    height: 50vh;
+    margin: 1rem;
+    background: colors.$color--white;
+    box-shadow: 2px 2px 2px colors.$color--grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 20px;
+    border: 2px solid colors.$color--grey;
+
+    &__image {
+        height: 50%;
+    }
+
+    &__information {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        flex-wrap: wrap;
+
+        &__title, &__price, &__description {
+            margin: 0;
+        }
+
+        &__title {
+            color: colors.$color--navy;
+            font-size: 1rem;
+            width: 80%;
+        }
+
+        &__price {
+            width: 20%;
+            padding: .2rem;
+            font-size: .8rem;
+            width: fit-content;
+            border-radius: .5rem;
+            background: colors.$color--blue;
+            color: colors.$color--white;
+        }
+        
+        &__description {
+            text-align: justify;
+            color: colors.$color--grey;
+            margin-top: .5rem;
+        }
+    }
+
+    &__buttons {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+
+        .product-card__button {
+            width: 40%;
+            color: colors.$color--white;
+            border: none;
+            padding: .2rem .4rem;
+            border-radius: 2rem;
+        }
+
+        #more-details {
+            background: colors.$color--navy;
+        }
+
+        #add-cart {
+            background: colors.$color--red;
+        }
+    }
+}

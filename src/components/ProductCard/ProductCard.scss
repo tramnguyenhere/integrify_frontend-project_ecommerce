@@ -1,53 +1,45 @@
 @use '../../assets/styles/variables/colors';
 
 .product-card {
-    max-width: 20vw;
-    height: 50vh;
-    background: colors.$color--white;
-    box-shadow: 2px 2px 2px colors.$color--grey;
+    height: 55vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1rem;
-    border-radius: 20px;
-    border: 2px solid colors.$color--grey;
-    margin-bottom: 1rem;
 
     &__image {
-        height: 50%;
-        border-radius: 20px;
+        width: 100%;
     }
 
     &__information {
         display: flex;
         justify-content: space-between;
         width: 100%;
-        flex-wrap: wrap;
+        flex-direction: column;
+        margin-top: .5rem;
+        border-top: 1px solid colors.$color--grey;
+        padding: .4rem 0;
 
         &__title, &__price, &__description {
             margin: 0;
         }
 
         &__title {
-            color: colors.$color--navy;
-            font-size: 1rem;
-            width: 80%;
+            color: colors.$color--black;
+            font-size: .9rem;
         }
 
         &__price {
-            width: 20%;
             padding: .2rem;
-            font-size: .8rem;
+            font-size: 1rem;
+            font-weight: 600;
             width: fit-content;
-            border-radius: .5rem;
-            background: colors.$color--blue;
-            color: colors.$color--white;
+            color: colors.$color--blue;
         }
         
         &__description {
             text-align: justify;
+            font-size: .7rem;
             color: colors.$color--grey;
-            margin-top: .5rem;
         }
     }
 

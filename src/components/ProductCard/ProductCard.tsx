@@ -4,7 +4,7 @@ import './ProductCard.scss'
 import { Product } from '../../types/Product'
 import { Link } from 'react-router-dom'
 
-const ProductCard = ({title, price, images, description,id}: Product) => {
+const ProductCard = ({ title, price, images, description, id }: Product) => {
   return (
       <article className='product-card'>
           <img className='product-card__image' alt={title} src={images[0]} />

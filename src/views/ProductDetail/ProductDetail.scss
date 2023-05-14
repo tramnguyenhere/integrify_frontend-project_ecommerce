@@ -1,0 +1,77 @@
+@use '../../assets/styles/variables/colors';
+
+.product-details {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0 2rem;
+    height: fit-content;
+
+    &__images {
+        display: flex;
+        flex-direction: column;
+        width: 10%;
+
+        .product-details__image img {
+            width: 100%;
+        }
+    }
+
+    &__image--main img {
+        height: 70vh;
+    }
+
+    &__information {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        &__title, &__price, &__category {
+            margin: 0;
+        }
+
+        &__title {
+            font-size: 2rem;
+            color: colors.$color--navy;
+        }
+
+        &__price, &__category {
+            display: flex;
+            align-items: center;
+
+            h4 {
+                color: colors.$color--blue;
+            }
+
+            p {
+                margin-left: .5rem;
+            }
+        }
+
+        &__price {
+            p {
+                font-size: 1.5rem;
+                color: colors.$color--red;
+            }
+        }
+
+        &__category {
+            p {
+                background: colors.$color--grey;
+                padding: .2rem .4rem;
+                color: colors.$color--white;
+                border-radius: .4rem;
+            }
+        }
+
+        &__button {
+            width: 100%;
+            background: colors.$color--navy;
+            padding: .5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: colors.$color--white;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 1.3rem;
+        }
+    }
+}

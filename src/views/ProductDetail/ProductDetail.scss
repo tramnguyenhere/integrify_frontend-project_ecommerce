@@ -1,77 +1,111 @@
 @use '../../assets/styles/variables/colors';
+@use '../../assets/styles/variables/border';
+@use '../../assets/styles/variables/animation';
+@use '../../assets/styles/mixins/buttons';
 
-.product-details {
-    display: flex;
-    justify-content: space-evenly;
+.product__container {
     padding: 0 2rem;
-    height: fit-content;
 
-    &__images {
+    .product-details {
         display: flex;
-        flex-direction: column;
-        width: 10%;
-
-        .product-details__image img {
-            width: 100%;
-        }
-    }
-
-    &__image--main img {
-        height: 70vh;
-    }
-
-    &__information {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        &__title, &__price, &__category {
-            margin: 0;
-        }
-
-        &__title {
-            font-size: 2rem;
-            color: colors.$color--navy;
-        }
-
-        &__price, &__category {
+        justify-content: space-evenly;
+        height: fit-content;
+        align-items: center;
+    
+        &__images {
             display: flex;
-            align-items: center;
-
-            h4 {
-                color: colors.$color--blue;
-            }
-
-            p {
-                margin-left: .5rem;
-            }
-        }
-
-        &__price {
-            p {
-                font-size: 1.5rem;
-                color: colors.$color--red;
-            }
-        }
-
-        &__category {
-            p {
-                background: colors.$color--grey;
-                padding: .2rem .4rem;
-                color: colors.$color--white;
-                border-radius: .4rem;
-            }
-        }
-
-        &__button {
-            width: 100%;
-            background: colors.$color--navy;
-            padding: .5rem;
-            display: flex;
-            align-items: center;
+            flex-direction: column;
+            width: 10%;
             justify-content: center;
-            color: colors.$color--white;
-            font-family: 'Ubuntu', sans-serif;
-            font-size: 1.3rem;
+    
+            .product-details__image {
+                margin: 1rem;
+                
+                img {
+                    width: 100%;
+                    transition: animation.$transition;
+                    cursor: pointer;
+        
+                    &:hover {
+                       transform: scale(1.2); 
+                    }
+                }
+            }
+        }
+    
+        &__image--main img {
+            height: 70vh;
+        }
+    
+        &__information {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            &__title, &__price, &__category {
+                margin: 0;
+            }
+    
+            &__title {
+                font-size: 2rem;
+                color: colors.$color--navy;
+            }
+    
+            &__price, &__category {
+                display: flex;
+                align-items: center;
+    
+                h4 {
+                    color: colors.$color--blue;
+                }
+    
+                p {
+                    margin-left: .5rem;
+                }
+            }
+    
+            &__price {
+                p {
+                    font-size: 1.5rem;
+                    color: colors.$color--red;
+                }
+            }
+    
+            &__category {
+                p {
+                    background: colors.$color--grey;
+                    padding: .2rem .4rem;
+                    color: colors.$color--white;
+                    border-radius: border.$border-radius;
+                }
+            }
+    
+            &__button {
+                @include buttons.button(colors.$color--navy, colors.$color--red, 100%, 1.2rem)
+            }
+        }
+    }
+    
+    .product-description {
+        margin-top: 2rem;
+        
+        &__tab {
+            padding: .3rem;
+            display: flex;
+            border-bottom: 2px solid colors.$color--grey;
+            
+            &__header {
+                padding-right: 2rem;
+                font-size: 1.2rem;
+                cursor: pointer;
+            }
+
+            &__content {
+                margin: 1rem;
+            }
+        }
+
+        .tab__active {
+            color: colors.$color--navy;
         }
     }
 }

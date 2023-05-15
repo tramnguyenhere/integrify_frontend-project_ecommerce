@@ -1,4 +1,5 @@
 @use '../../assets/styles/variables/colors';
+@use '../../assets/styles/variables/animation';
 
 .header {
     display: flex;
@@ -38,7 +39,7 @@
 
         &:hover {
             color: colors.$color--blue; 
-            transition: all .3s ease-in-out;
+            transition: animation.$transition;
         }
     }
 

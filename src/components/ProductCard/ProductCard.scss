@@ -1,4 +1,7 @@
 @use '../../assets/styles/variables/colors';
+@use '../../assets/styles/variables/border';
+@use '../../assets/styles/variables/animation';
+@use '../../assets/styles/mixins/buttons';
 
 .product-card {
     height: 55vh;
@@ -8,6 +11,12 @@
 
     &__image {
         width: 100%;
+        padding: 10px;
+        transition: animation.$transition;
+
+        &:hover {
+            padding: 0;
+        }
     }
 
     &__information {
@@ -48,23 +57,12 @@
         display: flex;
         justify-content: space-evenly;
 
-        .product-card__button {
-            width: 40%;
-            color: colors.$color--white;
-            border: none;
-            padding: .2rem .4rem;
-            border-radius: 2rem;
-            font-family:  'Ubuntu', sans-serif;
-            font-size: .8rem;
-            text-align: center;
-        }
-
         #more-details {
-            background: colors.$color--navy;
+            @include buttons.button(colors.$color--blue, colors.$color--red, 40%, .8rem);
         }
-
+        
         #add-cart {
-            background: colors.$color--red;
+            @include buttons.button(colors.$color--navy, colors.$color--red, 40%, .8rem);
         }
     }
 }

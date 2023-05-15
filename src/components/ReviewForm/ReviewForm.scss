@@ -1,0 +1,42 @@
+@use '../../assets/styles/variables/colors';
+@use '../../assets/styles/variables/font';
+@use '../../assets/styles/mixins/buttons';
+
+.review__form {
+    margin: 1rem;
+    padding: 1rem;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    background: rgba($color: colors.$color--navy, $alpha: .4);
+
+    &__group {
+        input, textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid colors.$color--grey;
+            padding: 1rem;
+            margin: .5rem 0;
+
+            &::placeholder {
+                font-family: font.$primary-font;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    &__button {
+        @include buttons.button(colors.$color--navy, colors.$color--grey, fit-content, 1rem);
+        margin-top: 1rem
+    }
+
+    &--error {
+        font-size: .9rem;
+        color: colors.$color--white;
+        padding: 1rem;
+    }
+}

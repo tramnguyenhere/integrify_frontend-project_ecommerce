@@ -4,7 +4,8 @@
 @use '../../assets/styles/mixins/buttons';
 
 .product-card {
-    height: 55vh;
+    height: fit-content;
+    min-height: 55vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

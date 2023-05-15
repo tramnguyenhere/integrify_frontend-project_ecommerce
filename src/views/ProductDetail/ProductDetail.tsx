@@ -6,9 +6,12 @@ import useAppSelector from '../../hooks/useAppSelector'
 import { Product } from '../../types/Product'
 import './ProductDetail.scss'
 import ReviewForm from '../../components/ReviewForm/ReviewForm'
+import SingleReview from '../../components/Review/SingleReview'
+import { Review } from '../../types/Review'
 
 const ProductDetail = () => {
   const { products, loading, error } = useAppSelector(state => state.productsReducer)
+  const reviews = useAppSelector(state => state.reviewReducer.reviews)
   
   const { id } = useParams()
   const selectedProduct = products && products.find((product: Product) => product.id === Number(id))
@@ -73,9 +76,14 @@ const ProductDetail = () => {
                 <p>{selectedProduct?.description}</p>
               </div>
             ) : (
-              <div className='product-description__tab__review'>
-                <ReviewForm />
-              </div>
+                <div className='product-description__tab__review'>
+                  {reviews.map((review: Review) => (
+                    <div key={review.id}>
+                      <SingleReview name={review.name} email={review.email} feedback={review.feedback} />
+                    </div>
+                  ))}
+                  <ReviewForm />
+                </div>
             )}
           </section>
         </div>

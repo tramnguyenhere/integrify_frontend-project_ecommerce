@@ -102,6 +102,12 @@
             &__content {
                 margin: 1rem;
             }
+
+            &__review {
+                display: flex;
+                flex-direction: column;
+                margin: 1rem;
+            }
         }
 
         .tab__active {

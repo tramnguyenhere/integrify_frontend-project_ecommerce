@@ -7,7 +7,7 @@ import './ProductCard.scss'
 const ProductCard = ({ title, price, images, description, id }: Product) => {
   return (
       <article className='product-card'>
-          <Link to={`/products/${id}`}>
+          <Link to={`${id}`}>
               <img className='product-card__image' alt={title} src={images[0]} />
           </Link>
           <section className='product-card__information'>
@@ -16,7 +16,7 @@ const ProductCard = ({ title, price, images, description, id }: Product) => {
               <p className='product-card__information__description'>{description}</p>
           </section>
           <div className='product-card__buttons'>
-              <Link to={`/products/${id}`} id='more-details' className='product-card__button'>
+              <Link to={`${id}`} id='more-details' className='product-card__button'>
                   More details
               </Link>
               <button id='add-cart' className='product-card__button'>Add to cart</button>

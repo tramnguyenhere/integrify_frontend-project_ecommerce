@@ -1,8 +1,7 @@
 import React from 'react'
 
 import useAppSelector from '../hooks/useAppSelector'
-import ProductCard from '../components/ProductCard'
-import './Products.scss'
+import ProductCard from '../components/Product/ProductCard'
 
 const Products = () => {
   const { products, loading, error } = useAppSelector(state => state.products)

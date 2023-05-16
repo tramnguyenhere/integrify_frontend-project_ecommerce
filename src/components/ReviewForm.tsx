@@ -1,17 +1,20 @@
 import { useForm } from "react-hook-form";
 import {v4 as uuidv4} from "uuid"
 
-import './ReviewForm.scss';
 import { Review } from "../types/Review";
 import useAppDispatch from "../hooks/useAppDispatch";
 import { appendReview } from "../redux/reducers/reviewReducer";
 
-const ReviewForm = () => {
+interface ReviewFormProps {
+  productId?: number
+}
+
+const ReviewForm = ({productId}: ReviewFormProps) => {
     const { register, handleSubmit, formState: { errors } } = useForm<Review>();
     const dispatch = useAppDispatch()
 
     const onSubmit = (data: Review) => {
-        const newReview = {...data, id: uuidv4()}
+        const newReview = {...data, id: uuidv4(), productId}
         dispatch(appendReview(newReview))
     };
 

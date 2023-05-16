@@ -1,0 +1,45 @@
+@use '../variables/colors';
+
+.footer {
+    margin: 5rem 1rem 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    height: 20vh;
+
+    .footer__section {
+
+        .footer__payments {
+            display: flex;
+            
+            .footer__payment {
+                width: 50px;
+            }
+        }
+    }
+
+    &__brand {
+        display: flex;
+        flex-direction: column;
+
+        &__logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .logo__image {
+                width: 50px;
+            }
+        }
+
+        &__slogan {
+            color: colors.$color--grey;
+        }
+    }
+
+    &__heading {
+        color: colors.$color--navy;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+
+    
+}

@@ -1,7 +1,7 @@
-@use '../../assets/styles/variables/colors';
-@use '../../assets/styles/variables/border';
-@use '../../assets/styles/variables/animation';
-@use '../../assets/styles/mixins/buttons';
+@use '../variables/colors';
+@use '../variables/border';
+@use '../variables/animation';
+@use '../mixins/buttons';
 
 .product-card {
     height: fit-content;

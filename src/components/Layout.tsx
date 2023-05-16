@@ -2,6 +2,7 @@ import React from 'react'
 
 import Header from './Header'
 import Routes from '../routes/Routers'
+import Footer from './Footer'
 
 const Layout = () => {
   return (
@@ -10,6 +11,7 @@ const Layout = () => {
       <div>
           <Routes />
       </div>
+      <Footer />
     </>
   )
 }

@@ -1,14 +1,16 @@
-@use '../../assets/styles/variables/colors';
-@use '../../assets/styles/variables/font';
-@use '../../assets/styles/mixins/buttons';
+@use '../variables/colors';
+@use '../variables/font';
+@use '../variables/border';
+@use '../mixins/buttons';
 
 .review__form {
-    margin: 1rem;
+    margin: 1rem auto;
     padding: 1rem;
     width: 50vw;
     display: flex;
     flex-direction: column;
     background: rgba($color: colors.$color--navy, $alpha: .4);
+    border-radius: border.$border-radius;
 
     &__group {
         input, textarea {

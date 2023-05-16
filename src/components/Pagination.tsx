@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface PaginationProps {
     productsPerPage: number,
@@ -11,7 +11,11 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }: PaginationProp
 
   for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
     pageNumbers.push(i);
-  }
+    }
+    
+    useEffect(() => {
+        window.scrollTo(0,0)
+    },[pageNumbers])
 
   return (
     <ul className='pagination'>

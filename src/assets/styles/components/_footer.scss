@@ -8,11 +8,17 @@
 
     .footer__section {
 
-        .footer__payments {
+        &__content {
             display: flex;
             
             .footer__payment {
                 width: 50px;
+            }
+
+            .footer__icon {
+                font-size: 2rem;
+                margin: .2rem;
+                color: colors.$color--blue;
             }
         }
     }
@@ -39,7 +45,5 @@
         color: colors.$color--navy;
         font-size: 1rem;
         text-transform: uppercase;
-    }
-
-    
+    }   
 }

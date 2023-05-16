@@ -27,7 +27,7 @@ const Footer = () => {
         <h4 className="footer__heading">
           Payment
         </h4>
-        <div className="footer__payments">
+        <div className="footer__section__content">
           <img className='footer__payment' src={nordeaLogo} alt="nordea" />
           <img className='footer__payment' src={opLogo} alt="op" />
           <img className='footer__payment' src={paypalLogo} alt="paypal" />
@@ -37,9 +37,9 @@ const Footer = () => {
         <h4 className="footer__heading">
           Follow us
         </h4>
-        <div>
-        <i className="fa-brands fa-facebook"></i>
-        <i className="fa-brands fa-instagram"></i>
+        <div className='footer__section__content'>
+          <i className="fa-brands fa-facebook footer__icon"></i>
+          <i className="fa-brands fa-instagram footer__icon"></i>
         </div>
       </section>
     </footer>

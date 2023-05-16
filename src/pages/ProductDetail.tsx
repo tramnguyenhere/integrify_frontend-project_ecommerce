@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import Helmet from '../../components/Helmet/Helmet'
-import useAppSelector from '../../hooks/useAppSelector'
-import { Product } from '../../types/Product'
+import Helmet from '../components/Helmet'
+import useAppSelector from '../hooks/useAppSelector'
+import { Product } from '../types/Product'
 import './ProductDetail.scss'
-import ReviewForm from '../../components/ReviewForm/ReviewForm'
-import SingleReview from '../../components/Review/SingleReview'
-import { Review } from '../../types/Review'
+import ReviewForm from '../components/ReviewForm'
+import SingleReview from '../components/SingleReview'
+import { Review } from '../types/Review'
 
 const ProductDetail = () => {
-  const { products, loading, error } = useAppSelector(state => state.productsReducer)
-  const reviews = useAppSelector(state => state.reviewReducer.reviews)
+  const { products, loading, error } = useAppSelector(state => state.products)
+  const reviews = useAppSelector(state => state.reviews.reviews)
   
   const { id } = useParams()
   const selectedProduct = products && products.find((product: Product) => product.id === Number(id))

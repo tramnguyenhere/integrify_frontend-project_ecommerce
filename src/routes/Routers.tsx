@@ -1,13 +1,13 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 
-import Home from '../views/Home/Home'
-import Products from '../views/Products/Products'
-import ProductDetail from '../views/ProductDetail/ProductDetail'
-import Cart from '../views/Cart/Cart'
-import Registration from '../views/Registration/Registration'
-import Checkout from '../views/Checkout/Checkout'
-import Contact from '../views/Contact/Contact'
+import Home from '../pages/Home'
+import Products from '../pages/Products'
+import ProductDetail from '../pages/ProductDetail'
+import Cart from '../pages/Cart'
+import Registration from '../pages/Registration'
+import Checkout from '../pages/Checkout'
+import Contact from '../pages/Contact'
 
 const Routers = () => {
   return (

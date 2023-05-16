@@ -5,16 +5,8 @@ import reviewReducer from "./reducers/reviewReducer";
 
 const store = configureStore({
     reducer: {
-        productsReducer,
-        reviewReducer
-    },
-    preloadedState: {
-        productsReducer: {
-            loading: false,
-            error: "",
-            products: []
-        },
-       
+        products: productsReducer,
+        reviews: reviewReducer
     }
 })
 

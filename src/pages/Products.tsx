@@ -1,11 +1,11 @@
 import React from 'react'
 
-import useAppSelector from '../../hooks/useAppSelector'
-import ProductCard from '../../components/ProductCard/ProductCard'
+import useAppSelector from '../hooks/useAppSelector'
+import ProductCard from '../components/ProductCard'
 import './Products.scss'
 
 const Products = () => {
-  const { products, loading, error } = useAppSelector(state => state.productsReducer)
+  const { products, loading, error } = useAppSelector(state => state.products)
 
   if (loading) {
     return (

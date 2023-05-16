@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { Review } from '../../types/Review'
+import { Review } from '../types/Review'
+import { hideEmail } from '../utils/hideEmail'
 import './SingleReview.scss'
-import { hideEmail } from '../../utils/hideEmail'
 
 const SingleReview = ({ name, email, feedback }: Omit<Review, 'id'>) => {
   const hiddenEmail = hideEmail(email)

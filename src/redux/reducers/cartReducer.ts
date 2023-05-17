@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {v4 as uuidv4} from 'uuid'
 
-import { Cart, CartItem } from "../../types/Cart";
+import { CartItem, CartType } from "../../types/Cart";
 import { Product } from "../../types/Product";
 
-const initialState: Cart = {
+const initialState: CartType = {
   items: [],
   totalAmount: 0,
   totalQuantity: 0,
@@ -15,15 +15,25 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItemToCart: (state, action: PayloadAction<Product>) => {
-      const item: CartItem = {
-        ...action.payload,
-        quantity: 1,
-        amount: action.payload.price,
-        cartId: uuidv4()
-      };
-      state.items.push(item);
-      state.totalQuantity += 1;
-      state.totalAmount += action.payload.price;
+        const newItem = action.payload;
+        const existingItem = state.items.find((item) => item.id === newItem.id);
+      
+        if (existingItem) {
+          existingItem.quantity += 1;
+          existingItem.amount = existingItem.quantity * existingItem.price;
+        } else {
+          const cartItem: CartItem = {
+            ...newItem,
+            quantity: 1,
+            amount: newItem.price,
+            cartId: uuidv4()
+          };
+          state.items.push(cartItem);
+        }
+      
+        state.totalQuantity += 1;
+        state.totalAmount += newItem.price;
+      
     },
     removeItemFromCart: (state, action: PayloadAction<string>) => {
       const cartItemId = action.payload;

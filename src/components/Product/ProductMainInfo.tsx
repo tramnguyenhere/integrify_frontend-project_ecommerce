@@ -1,16 +1,26 @@
 import React, {useState, useEffect} from 'react'
 import { Product } from '../../types/Product'
+import useAppDispatch from '../../hooks/useAppDispatch'
+import { addItemToCart } from '../../redux/reducers/cartReducer'
 
 interface ProductMainInfoProps {
     selectedProduct?: Product
 }
 
-const ProductMainInfo = ({selectedProduct}:ProductMainInfoProps) => {
+const ProductMainInfo = ({ selectedProduct }: ProductMainInfoProps) => {
     const [mainImage, setMainImage] = useState(selectedProduct?.images[0])
 
     useEffect(() => {
         setMainImage(selectedProduct?.images[0])
-      },[selectedProduct])
+    }, [selectedProduct])
+    
+    const dispatch = useAppDispatch()
+
+    const cartHandler = () => {
+        if (selectedProduct) {
+            dispatch(addItemToCart(selectedProduct))
+        }
+    }
 
     return (
         <section className="product-details">
@@ -36,7 +46,7 @@ const ProductMainInfo = ({selectedProduct}:ProductMainInfoProps) => {
                     <h4>Category:</h4>
                     <p>{selectedProduct?.category?.name}</p>
                 </div>
-                <button className="product-details__information__button">Add to Cart</button>
+                <button className="product-details__information__button" onClick={cartHandler}>Add to Cart</button>
                 </div>
             </section>
     )

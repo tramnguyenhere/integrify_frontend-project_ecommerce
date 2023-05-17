@@ -6,7 +6,7 @@ export interface CartItem extends Product {
     cartId: string
 }
 
-export interface Cart {
+export interface CartType {
     items: CartItem[],
     totalAmount: number,
     totalQuantity: number

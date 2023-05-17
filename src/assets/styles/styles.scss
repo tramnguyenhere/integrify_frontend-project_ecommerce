@@ -4,6 +4,15 @@
 @use './components/productCard';
 @use './components/singleReview';
 @use './components/reviewForm';
+@use './components/error';
+@use './components/loader';
 @use './pages/productDetail';
 @use './pages/products';
 @use './pages/home';
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}

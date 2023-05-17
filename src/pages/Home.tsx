@@ -1,8 +1,8 @@
 import React from 'react'
 
 import herroBanner from '../assets/images/hero-banner.jpg'
-import Helmet from '../components/Helmet'
 import { Link } from 'react-router-dom'
+import Helmet from '../components/Helmet'
 
 const Home = () => {
   return (

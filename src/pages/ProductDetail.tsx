@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 
-import Helmet from '../components/Helmet'
 import useAppSelector from '../hooks/useAppSelector'
 import { Product } from '../types/Product'
+import Helmet from '../components/Helmet'
 import ProductMainInfo from '../components/Product/ProductMainInfo'
 import ProductDescription from '../components/Product/ProductDescription'
 import ProductCard from '../components/Product/ProductCard'
@@ -33,7 +33,7 @@ const ProductDetail = () => {
     )
   }
     return (
-      <Helmet title='Product Details'>
+      <Helmet title={`${selectedProduct?.title}`}>
         <div className='product__container'>
           <ProductMainInfo selectedProduct={selectedProduct} />
           <ProductDescription selectedProduct={selectedProduct} />

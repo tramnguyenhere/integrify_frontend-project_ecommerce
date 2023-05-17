@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
 
 import useAppSelector from '../hooks/useAppSelector'
-import ProductCard from '../components/Product/ProductCard'
-import Pagination from '../components/Pagination'
+import Helmet from '../components/Helmet';
+import ProductCard from '../components/Product/ProductCard';
+import Pagination from '../components/Pagination';
+import Loading from './Loading';
 
 const Products = () => {
   const { products, loading, error } = useAppSelector(state => state.products)
@@ -20,7 +22,7 @@ const Products = () => {
   if (loading) {
     return (
       <>
-        Loading...
+        <Loading />
       </>
     )
   } else if (error) {
@@ -31,26 +33,28 @@ const Products = () => {
     )
   }
   return (
-    <div className="products__wrapper">
-      <div className='products'>
-      {currentProducts.map((product) => (
-        <div key={product.id}>
-          <ProductCard
-            id={product.id}
-            description={product.description}
-            title={product.title}
-            price={product.price}
-            images={product.images}
-          />
+    <Helmet title='Products'>
+      <div className="products__wrapper">
+        <div className='products'>
+        {currentProducts.map((product) => (
+          <div key={product.id}>
+            <ProductCard
+              id={product.id}
+              description={product.description}
+              title={product.title}
+              price={product.price}
+              images={product.images}
+            />
+          </div>
+        ))}
         </div>
-      ))}
+        <Pagination
+          productsPerPage={productPerPage}
+          totalProducts={products.length}
+          paginate={paginate}
+        />
       </div>
-      <Pagination
-        productsPerPage={productPerPage}
-        totalProducts={products.length}
-        paginate={paginate}
-      />
-    </div>
+    </Helmet>
   )
 }
 

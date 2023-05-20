@@ -1,6 +1,6 @@
-@use '../variables/font';
-@use '../variables/colors';
-@use '../mixins/buttons';
+@use "../variables/font";
+@use "../variables/colors";
+@use "../mixins/buttons";
 
 .cart {
     display: flex;
@@ -8,6 +8,7 @@
     justify-content: space-between;
     margin: 0 2rem;
     align-items: center;
+    height: calc(100vh - 200px);
 
     &__header {
         color: colors.$color--navy;
@@ -20,7 +21,7 @@
         justify-content: space-around;
         overflow-y: scroll;
         border: 3px solid colors.$color--grey !important;
-        max-height: 40vh;
+        height: 40vh;
 
         th {
             text-align: center !important;
@@ -32,19 +33,24 @@
             text-align: center;
         }
 
-                .item__price {
+        .item__price {
             font-weight: 500;
         }
 
-        #item__quantity-control {
+        .item__button {
             display: flex;
             justify-content: center;
-            margin: .5rem 0;
+            flex-direction: row;
+        }
+
+        #item__quantity-control {
+            margin: 0.5rem 0;
 
             input {
                 width: 4rem;
+                overflow-wrap: break-word;
                 text-align: center;
-                border: none
+                margin: 0 1rem
             }
 
             button {
@@ -56,11 +62,8 @@
         }
 
         #item__button--remove {
-            display: flex;
-            align-items: center;
-            justify-content: center;
             button {
-                @include buttons.button(colors.$color--blue, colors.$color--grey, fit-content, .7rem);
+                @include buttons.button(colors.$color--blue, colors.$color--grey, fit-content, 1rem);
             }
         }
     }
@@ -74,13 +77,22 @@
             display: flex;
 
             h4 {
-                margin-right: .5rem;
+                margin-right: 0.5rem;
             }
         }
     }
 
-    &__button--checkout {
-        @include buttons.button(colors.$color--blue, colors.$color--grey, fit-content, 1rem)
+    &__buttons {
+        display: flex;
+
+        .cart__button {
+            @include buttons.button(colors.$color--blue, colors.$color--grey, fit-content, 1rem);
+        }
+
+        #continue-shopping {
+            background: colors.$color--navy;
+            margin-right: 1rem;
+        }
     }
 }
 
@@ -91,9 +103,9 @@
     align-items: center;
     background: colors.$color--white;
     height: calc(100vh - 16rem);
-    
+
     &__button {
         margin: 1rem 0;
-        @include buttons.button(colors.$color--navy, colors.$color--grey, fit-content, 1rem)
+        @include buttons.button(colors.$color--navy, colors.$color--grey, fit-content, 1rem);
     }
 }

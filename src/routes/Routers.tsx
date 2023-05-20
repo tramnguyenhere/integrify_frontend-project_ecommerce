@@ -7,7 +7,6 @@ import ProductDetail from '../pages/ProductDetail'
 import Cart from '../pages/Cart'
 import Registration from '../pages/Registration'
 import Checkout from '../pages/Checkout'
-import Contact from '../pages/Contact'
 
 const Routers = () => {
   return (
@@ -19,7 +18,6 @@ const Routers = () => {
         <Route path= '/cart' element = {<Cart />} />
         <Route path= '/register' element = {<Registration />} />
         <Route path= '/checkout' element = {<Checkout />} />
-        <Route path= '/contact' element = {<Contact />} />
       </Routes>
   )
 }

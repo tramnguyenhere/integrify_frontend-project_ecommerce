@@ -8,6 +8,7 @@ const initialState: CartType = {
   items: [],
   totalAmount: 0,
   totalQuantity: 0,
+  isSideCartVisible: false
 };
 
 const cartSlice = createSlice({
@@ -86,6 +87,9 @@ const cartSlice = createSlice({
         state.totalAmount -= removedItem.amount;
       }
     },
+    manageSideCartVisible: (state, action: PayloadAction<boolean>) => {
+      state.isSideCartVisible = !state.isSideCartVisible
+    }
   },
 });
 
@@ -95,6 +99,7 @@ export const {
   setItemQuantity,
   increaseItemQuantity,
   decreaseItemQuantity,
+  manageSideCartVisible
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -9,5 +9,6 @@ export interface CartItem extends Product {
 export interface CartType {
     items: CartItem[],
     totalAmount: number,
-    totalQuantity: number
+    totalQuantity: number,
+    isSideCartVisible: boolean
 }

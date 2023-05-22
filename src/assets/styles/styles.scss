@@ -3,17 +3,30 @@
 @use './components/pagination';
 @use './components/productCard';
 @use './components/singleReview';
-@use './components/reviewForm';
+@use './components/form';
+@use './components/quantityButton';
 @use './components/error';
 @use './components/loader';
+@use './components/sideCart';
+@use './components/buttons';
+@use './components/searchBar';
 @use './pages/productDetail';
 @use './pages/products';
 @use './pages/home';
+@use './pages/checkout';
 @use './pages/cart';
+@use './variables/colors';
 
 .layout {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
+}
+
+.page__header {
+    color: colors.$color--navy;
+    font-size: 1.7rem;
+    padding: 1rem 2rem;
+    width: 100%;
 }

@@ -1,15 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { CartType } from '../types/Cart';
 import useAppSelector from '../hooks/useAppSelector';
-import Helmet from '../components/Helmet';
-import { Link } from 'react-router-dom';
 import useAppDispatch from '../hooks/useAppDispatch';
-import {
-  decreaseItemQuantity,
-  increaseItemQuantity,
-  removeItemFromCart,
-  setItemQuantity,
-} from '../redux/reducers/cartReducer';
+import Helmet from '../components/Helmet';
+import QuantityButton from '../components/Cart/QuantityButton';
+import { checkoutCart, removeItemFromCart } from '../redux/reducers/cartReducer';
 
 const Cart = () => {
   const { items, totalAmount, totalQuantity }: CartType = useAppSelector(
@@ -17,11 +14,15 @@ const Cart = () => {
   );
   const dispatch = useAppDispatch();
 
+  const checkoutHandler = () => {
+    dispatch(checkoutCart())
+  }
+
   return (
     <Helmet title='Cart'>
       {items.length > 0 ? (
         <div className='cart'>
-          <h1 className='cart__header'>Shopping Cart</h1>
+          <h1 className='page__header'>Shopping Cart</h1>
           <section className='cart__control-panel'>
             <table className='cart__control-panel__items'>
               <thead>
@@ -39,35 +40,7 @@ const Cart = () => {
                     <td id='item__info'>{item.title}</td>
                     <td className='item__price'>${item.price}</td>
                     <td id='item__quantity-control'>
-                      <div className='item__button'>
-                        <button
-                          onClick={() =>
-                            dispatch(decreaseItemQuantity(item.cartId))
-                          }
-                        >
-                          -
-                        </button>
-                        <input
-                          min={1}
-                          maxLength={2}
-                          value={item.quantity}
-                          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                            dispatch(
-                              setItemQuantity({
-                                cartItemId: item.cartId,
-                                quantity: Number(e.target.value),
-                              })
-                            )
-                          }
-                        />
-                        <button
-                          onClick={() =>
-                            dispatch(increaseItemQuantity(item.cartId))
-                          }
-                        >
-                          +
-                        </button>
-                      </div>
+                      <QuantityButton item={item} />
                     </td>
                     <td className='item__price'>${item.amount}</td>
                     <td id='item__button--remove'>
@@ -106,7 +79,7 @@ const Cart = () => {
             >
               Continue Shopping
             </Link>
-            <Link to='/checkout' className='cart__button' id='checkout'>
+            <Link to='/checkout' onClick={checkoutHandler} className='cart__button' id='checkout'>
               Proceed to Checkout
             </Link>
           </div>

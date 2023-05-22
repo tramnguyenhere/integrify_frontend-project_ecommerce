@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import logo from '../assets/images/logo.png'
 import { CartType } from '../types/Cart'
 import useAppSelector from '../hooks/useAppSelector'
+import useAppDispatch from '../hooks/useAppDispatch'
+import { manageSideCartVisible } from '../redux/reducers/cartReducer'
 
 const navigation_link = [
   {
@@ -25,6 +27,8 @@ const navigation_link = [
 ]
 
 const Header = () => {
+  const isSideCartVisible = useAppSelector(state => state.cart.isSideCartVisible)
+  const dispatch = useAppDispatch()
   const { totalQuantity }: CartType = useAppSelector(
     (state) => state.cart
     );
@@ -48,15 +52,15 @@ const Header = () => {
         ))}
       </div>
       <div className='navigation--right'>
-        <span className='navigation__item' id='cart__icon'>
-          <i className="fa-solid fa-cart-shopping"></i>
-          <span className='cart__badge'>{totalQuantityUI}</span>
-        </span>
-        <span id='user'>
+        <div className='navigation__item' id='cart__icon' onClick={()=>dispatch(manageSideCartVisible(!isSideCartVisible))}>
+          <i className="fa-solid fa-cart-shopping" />
+          <p className='cart__badge'>{totalQuantityUI}</p>
+        </div>
+        <div id='user'>
           <Link to='/login'>
             <i className="fa-solid fa-user navigation__item"></i>
           </Link>
-        </span>
+        </div>
       </div>
     </header>
   )

@@ -19,32 +19,32 @@ const ReviewForm = ({productId}: ReviewFormProps) => {
     };
 
   return (
-    <form className="review__form" onSubmit={handleSubmit(onSubmit)}>
-      <div className="review__form__group">
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <div className="form__group">
         <input
           type="text"
           placeholder="Enter your name"
           {...register("name", { required: true })}
         />
-        {errors.name && <span className="review__form--error">This field is required!</span>}
+        {errors.name && <span className="form--error">This field is required!</span>}
       </div>
-      <div className="review__form__group">
+      <div className="form__group">
         <input
           type="email"
           placeholder="Enter your email"
           {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
         />
-        {errors.email && <span className="review__form--error">This field is required to put a valid email!</span>}
+        {errors.email && <span className="form--error">This field is required to put a valid email!</span>}
       </div>
-      <div className="review__form__group">
+      <div className="form__group">
         <textarea
           rows={5}
           placeholder="Leave your feedback here"
           {...register("feedback", { required: true, minLength: 6 })}
         />
-        {errors.feedback && <span className="review__form--error">This field is required at least 6 characters!</span>}
+        {errors.feedback && <span className="form--error">This field is required at least 6 characters!</span>}
       </div>
-      <button type="submit" className="review__form__button">
+      <button type="submit" className="form__button">
         Submit
       </button>
     </form>

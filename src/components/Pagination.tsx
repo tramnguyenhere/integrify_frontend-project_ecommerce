@@ -7,6 +7,7 @@ interface PaginationProps {
 }
 
 const Pagination = ({ productsPerPage, totalProducts, paginate }: PaginationProps) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
@@ -21,7 +22,7 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }: PaginationProp
     <ul className='pagination'>
       {pageNumbers.map((number) => (
         <li key={number} className='pagination__page-item'>
-          <button onClick={() => paginate(number)} className='pagination__page-link'>
+          <button onClick={() => paginate(number)} className='pagination__page-link fit-button__primary'>
             {number}
           </button>
         </li>

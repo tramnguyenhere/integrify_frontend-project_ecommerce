@@ -8,7 +8,9 @@ const initialState: CartType = {
   items: [],
   totalAmount: 0,
   totalQuantity: 0,
-  isSideCartVisible: false
+  isSideCartVisible: false,
+  shippingFee: 0,
+  cartId: ''
 };
 
 const cartSlice = createSlice({
@@ -88,7 +90,10 @@ const cartSlice = createSlice({
       }
     },
     manageSideCartVisible: (state, action: PayloadAction<boolean>) => {
-      state.isSideCartVisible = !state.isSideCartVisible
+      state.isSideCartVisible = action.payload
+    },
+    checkoutCart: (state) => {
+      state = { ...state, cartId: uuidv4() }
     }
   },
 });
@@ -99,7 +104,8 @@ export const {
   setItemQuantity,
   increaseItemQuantity,
   decreaseItemQuantity,
-  manageSideCartVisible
+  manageSideCartVisible,
+  checkoutCart
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

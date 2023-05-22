@@ -15,6 +15,9 @@
 @use './pages/home';
 @use './pages/checkout';
 @use './pages/cart';
+@use './pages/login';
+@use './pages/userProfile';
+@use './pages/registration';
 @use './variables/colors';
 
 .layout {

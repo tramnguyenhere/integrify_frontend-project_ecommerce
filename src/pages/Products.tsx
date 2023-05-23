@@ -1,38 +1,41 @@
 import React, { useState, useEffect } from 'react';
 
-import useAppSelector from '../hooks/useAppSelector';
 import Helmet from '../components/Helmet';
 import ProductCard from '../components/Product/ProductCard';
 import Pagination from '../components/Pagination';
-import Loading from './Loading';
 import SearchBar from '../components/SearchBar';
+import Category from '../components/Category';
 import { Product } from '../types/Product';
+import Loading from './Loading';
+import useAppSelector from '../hooks/useAppSelector';
+import useAppDispatch from '../hooks/useAppDispatch';
 
 const Products = () => {
-  const { products, loading, error } = useAppSelector(
+  const dispatch = useAppDispatch();
+  const { filteredProducts, loading, error } = useAppSelector(
     (state) => state.products
   );
 
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<Product[] | undefined>(
-    products
+    filteredProducts
   );
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value.toLowerCase());
+  };
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       return setSearchResults(
-        products.filter((product: Product) =>
+        filteredProducts.filter((product: Product) =>
           product.title.toLowerCase().includes(searchTerm.toLowerCase())
         )
       );
     }, 500);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [products, searchTerm]);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value.toLowerCase());
-  };
+  }, [dispatch, filteredProducts, searchTerm]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const productPerPage = 15;
@@ -44,6 +47,9 @@ const Products = () => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
+
+  console.log(indexOfFirstProduct, indexOfLastProduct);
+  
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -61,21 +67,22 @@ const Products = () => {
       <div className='products__wrapper'>
         <h1 className='page__header'>Products</h1>
         <SearchBar handleInputChange={handleInputChange} />
+        <Category />
         <div className='products'>
           {currentProducts?.map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                description={product.description}
-                title={product.title}
-                price={product.price}
-                images={product.images}
-              />
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              description={product.description}
+              title={product.title}
+              price={product.price}
+              images={product.images}
+            />
           ))}
         </div>
         <Pagination
           productsPerPage={productPerPage}
-          totalProducts={currentProducts ? currentProducts.length : 0}
+          totalProducts={searchResults ? searchResults.length : 0}
           paginate={paginate}
         />
       </div>

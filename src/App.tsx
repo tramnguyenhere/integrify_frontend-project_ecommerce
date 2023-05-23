@@ -5,6 +5,7 @@ import useAppDispatch from './hooks/useAppDispatch'
 import { fetchAllProducts } from './redux/reducers/productsReducer'
 import './assets/styles/styles.scss'
 import { fetchAllUsers } from './redux/reducers/usersReducer'
+import { fetchAllCategories } from './redux/reducers/categoriesReducer'
 
 const App = () => {
   const dispatch = useAppDispatch()
@@ -12,6 +13,7 @@ const App = () => {
   useEffect(() => {
     dispatch(fetchAllProducts())
     dispatch(fetchAllUsers())
+    dispatch(fetchAllCategories())
   }, [dispatch])
   
   return (

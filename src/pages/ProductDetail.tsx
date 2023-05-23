@@ -7,28 +7,35 @@ import Helmet from '../components/Helmet'
 import ProductMainInfo from '../components/Product/ProductMainInfo'
 import ProductDescription from '../components/Product/ProductDescription'
 import ProductCard from '../components/Product/ProductCard'
+import useAppDispatch from '../hooks/useAppDispatch'
+import { fetchSingleProductById } from '../redux/reducers/productsReducer'
+import Loading from './Loading'
+import Error from './Error'
 
 const ProductDetail = () => {
-  const { products, loading, error } = useAppSelector(state => state.products)
+  const { products, filteredProducts, loading, error } = useAppSelector(state => state.products)
   const { id } = useParams()
-  const selectedProduct = products && products.find((product: Product) => product.id === Number(id))
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    dispatch(fetchSingleProductById(Number(id)))
+  }, [dispatch, id])
+  
+  const selectedProduct: Product = filteredProducts && filteredProducts[0]
   const relatedProducts = products.filter((product) => product.category?.name === selectedProduct?.category?.name)
   const relatedProductsLimit = relatedProducts.slice(0,10)
-  
-  useEffect(() => {
-    window.scrollTo(0,0)
-  },[selectedProduct])
   
   if (loading) {
     return (
       <>
-        Loading...
+        <Loading />
       </>
     )
   } else if (error) {
     return (
       <>
-        {error}
+        <Error error={error} />
       </>
     )
   }

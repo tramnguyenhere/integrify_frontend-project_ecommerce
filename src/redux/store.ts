@@ -4,11 +4,13 @@ import productsReducer from '../redux/reducers/productsReducer'
 import reviewReducer from "./reducers/reviewReducer";
 import cartReducer from "./reducers/cartReducer";
 import usersReducer from "./reducers/usersReducer";
+import categoriesReducer from "./reducers/categoriesReducer";
 
 const store = configureStore({
     reducer: {
         products: productsReducer,
         reviews: reviewReducer,
+        categories: categoriesReducer,
         cart: cartReducer,
         users: usersReducer
     }

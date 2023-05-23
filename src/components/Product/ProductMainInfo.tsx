@@ -2,12 +2,16 @@ import React, {useState, useEffect} from 'react'
 import { Product } from '../../types/Product'
 import useAppDispatch from '../../hooks/useAppDispatch'
 import { addItemToCart } from '../../redux/reducers/cartReducer'
+import { Link } from 'react-router-dom'
+import useAppSelector from '../../hooks/useAppSelector'
+import { userRoleEnum } from '../../types/User'
 
 interface ProductMainInfoProps {
     selectedProduct?: Product
 }
 
 const ProductMainInfo = ({ selectedProduct }: ProductMainInfoProps) => {
+    const {currentUser} = useAppSelector(state=>state.users)
     const [mainImage, setMainImage] = useState(selectedProduct?.images[0])
 
     useEffect(() => {
@@ -46,7 +50,12 @@ const ProductMainInfo = ({ selectedProduct }: ProductMainInfoProps) => {
                     <h4>Category:</h4>
                     <p>{selectedProduct?.category?.name}</p>
                 </div>
-                <button className="product-details__information__button" onClick={cartHandler}>Add to Cart</button>
+                {currentUser?.role === userRoleEnum.Admin ? (
+        <Link to={`/dashboard/product-management/${selectedProduct?.id}`} className='full-width-button__primary'>Edit</Link>
+      ) : (
+        <button className="product-details__information__button" onClick={cartHandler}>Add to Cart</button>
+      )}
+               
                 </div>
             </section>
     )

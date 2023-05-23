@@ -42,3 +42,12 @@
         padding: 1rem;
     }
 }
+
+.form--pop-up {
+    position: fixed;
+    width: 50vw;
+    top: 25%;
+    right: 25%;
+    z-index: 10;
+    background: colors.$color--white;
+}

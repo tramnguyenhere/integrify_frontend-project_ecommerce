@@ -10,6 +10,9 @@ import Checkout from '../pages/Checkout';
 import Login from '../pages/Login';
 import useAppSelector from '../hooks/useAppSelector';
 import UserProfile from '../pages/UserProfile';
+import Dashboard from '../pages/Admin/Dashboard';
+import ProductManagement from '../pages/Admin/ProductManagement';
+import EditProductForm from '../components/Form/EditProductForm';
 
 const Routers = () => {
   const currentUser = useAppSelector((state) => state.users.currentUser);
@@ -24,6 +27,9 @@ const Routers = () => {
       <Route path='/checkout' element={<Checkout />} />
       <Route path='/user' element={currentUser ? <UserProfile /> : <Navigate to='/login' />} />
       <Route path='/login' element={currentUser ? <Navigate to='/user' /> : <Login />} />
+      <Route path='/dashboard' element={currentUser?.role === 'admin' ? <Dashboard /> : <Navigate to='/login' />} />
+      <Route path='/dashboard/product-management' element={currentUser?.role === 'admin' ? <ProductManagement /> : <Navigate to='/login' />} />
+      <Route path='/dashboard/product-management/:id' element={currentUser?.role === 'admin' ? <EditProductForm /> : <Navigate to='/login' />} />
     </Routes>
   );
 };

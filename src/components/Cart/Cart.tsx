@@ -3,44 +3,55 @@ import { Link } from 'react-router-dom';
 
 import useAppSelector from '../../hooks/useAppSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
-import { checkoutCart, manageSideCartVisible } from '../../redux/reducers/cartReducer';
+import {
+  checkoutCart,
+  manageSideCartVisible,
+} from '../../redux/reducers/cartReducer';
 import { CartType } from '../../types/Cart';
 import SideCartItem from './SideCartItem';
 
 const Cart = () => {
-  const isSideCartVisible = useAppSelector(state => state.cart.isSideCartVisible)
+  const isSideCartVisible = useAppSelector(
+    (state) => state.cart.isSideCartVisible
+  );
   const { items, totalAmount, totalQuantity }: CartType = useAppSelector(
     (state) => state.cart
   );
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const toggleCart = () => {
-    dispatch(manageSideCartVisible(!isSideCartVisible))
-  }
+    dispatch(manageSideCartVisible(!isSideCartVisible));
+  };
 
   const checkoutHandler = () => {
-    dispatch(checkoutCart())
-  }
-    
+    dispatch(checkoutCart());
+  };
+
   return (
     <div className={`side-cart ${isSideCartVisible ? '' : 'hidden'}`}>
-      <div className='side-cart__overlay' onClick={toggleCart}></div>
+      <div className='overlay' onClick={toggleCart}></div>
       <div className='side-cart__wrapper'>
         <button className='side-cart__button--close' onClick={toggleCart}>
-        <i className="fa-solid fa-circle-xmark" />
+          <i className='fa-solid fa-circle-xmark' />
         </button>
         {totalQuantity === 0 ? (
           <p className='side-cart__content--empty'>No item added to the cart</p>
         ) : (
-            <div className="side-cart__content">
-              {items.map(item => (
+          <div className='side-cart__content'>
+            {items.map((item) => (
               <SideCartItem key={item.cartId} item={item} />
             ))}
-            </div>
+          </div>
         )}
         <div className='side-cart__summary'>
           <p>Subtotal: ${totalAmount}</p>
-          <Link className='side-cart__summary__button fit-button__secondary' to='/checkout' onClick={checkoutHandler}>Checkout</Link>
+          <Link
+            className='side-cart__summary__button fit-button__secondary'
+            to='/checkout'
+            onClick={checkoutHandler}
+          >
+            Checkout
+          </Link>
         </div>
       </div>
     </div>

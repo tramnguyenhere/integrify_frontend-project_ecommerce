@@ -65,6 +65,8 @@ export const login = createAsyncThunk(
         { email, password }
       );
       localStorage.setItem('token', result.data.access_token);
+      localStorage.setItem('userCredential',  JSON.stringify({ email: email, password: password }));
+
       const authentication = await dispatch(
         authenticate(result.data.access_token)
       );
@@ -77,7 +79,7 @@ export const login = createAsyncThunk(
   }
 );
 
-export const logout = createAction('logout');
+export const logout = createAction('logout')
 
 export const createNewUser = createAsyncThunk(
   'createNewUser',
@@ -99,7 +101,7 @@ export const updateUser = createAsyncThunk(
   'updateUser',
   async (updatedUser: UserUpdate) => {
     try {
-      const updateUserResponse: any = await axios.put(
+      const updateUserResponse = await axios.put(
         `https://api.escuelajs.co/api/v1/users/${updatedUser.id}`,
         updatedUser.update
       );
@@ -156,6 +158,12 @@ const usersSlice = createSlice({
         }
         state.loading = false;
       })
+      .addCase(createNewUser.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(createNewUser.rejected, (state, action) => {
+        state.error = 'Cannot create new user';
+      })
       .addCase(updateUser.fulfilled, (state, action) => {
         if (action.payload instanceof AxiosError) {
           state.error = action.payload.message;
@@ -196,6 +204,7 @@ const usersSlice = createSlice({
       })
       .addCase(logout, (state) => {
         state.currentUser = undefined;
+        localStorage.removeItem('token')
       });
   },
 });

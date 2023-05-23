@@ -4,14 +4,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    .products {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 20px;
-        justify-content: center;
-        align-items: center;
-        padding: 0 2rem;
-    }
+}
 
+.products {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
 }

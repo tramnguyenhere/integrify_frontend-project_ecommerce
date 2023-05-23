@@ -37,7 +37,7 @@ export const fetchAllProductsByCategoryId = createAsyncThunk(
   'fetchAllProductsByCategoryId',
   async (categoryId: number) => {
     try {
-      const result = await axios.get<Product[]>(`${baseUrl}/${categoryId}`);
+      const result = await axios.get<Product[]>(`${baseUrl}/${categoryId}/products`);
       return result.data;
     } catch (e) {
       const error = e as AxiosError;
@@ -53,8 +53,8 @@ const categoriesSlice = createSlice({
     setCategory: (state, action: PayloadAction<number>) => {
       state.selectedCategoryId = action.payload
     },
-    resetCategory: (state, action: PayloadAction<number>) => {
-      state.selectedCategoryId = 0
+    resetCategory: (state, action: PayloadAction<Product[]>) => {
+      state.productsByCategory = action.payload
     }
   },
   extraReducers: (build) => {
@@ -94,7 +94,7 @@ const categoriesSlice = createSlice({
   },
 });
 
-export const { setCategory } = categoriesSlice.actions;
+export const { setCategory, resetCategory } = categoriesSlice.actions;
 
 const categoriesReducer = categoriesSlice.reducer;
 

@@ -8,17 +8,6 @@
     right: 0;
     bottom: 0;
 
-    &__overlay {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        opacity: 0.6;
-        background: colors.$color--grey;
-        z-index: -1;
-    }
-
     &__wrapper {
         background: colors.$color--white;
         position: fixed;
@@ -30,8 +19,7 @@
         flex-direction: column;
         justify-content: space-between;
         padding: 1rem;
-        
-
+        z-index: 10;
         
         .side-cart__button--close {
             @include buttons.button(transparent, transparent, fit-content, 1.5rem);

@@ -1,6 +1,7 @@
 .categories {
     display: flex;
-
+    flex-wrap: wrap;
+    justify-content: center;
     .category {
         margin: .5rem;
     }

@@ -3,8 +3,8 @@ import useAppSelector from '../hooks/useAppSelector';
 import Loading from '../pages/Loading';
 import Error from '../pages/Error';
 import useAppDispatch from '../hooks/useAppDispatch';
-import { setCategory } from '../redux/reducers/categoriesReducer';
-import { setFilteredProducts } from '../redux/reducers/productsReducer';
+import { fetchAllProductsByCategoryId, resetCategory, setCategory } from '../redux/reducers/categoriesReducer';
+
 
 const Category = () => {
   const { categories, selectedCategoryId, loading, error } = useAppSelector(
@@ -17,13 +17,12 @@ const Category = () => {
 
   useEffect(() => {
     if (selectedCategoryId === 0) {
-      dispatch(setFilteredProducts([...products]))
+      dispatch(resetCategory(products))
     } else {
-      const productsByCategory = products.filter(product=>product.category?.id === selectedCategoryId)
-      dispatch(setFilteredProducts([...productsByCategory]))
+      dispatch(fetchAllProductsByCategoryId(selectedCategoryId))
     }
   },[dispatch, products, selectedCategoryId])
-
+  
   if (loading) {
     return (
       <>

@@ -51,6 +51,7 @@ const Header = () => {
         {navigation_link.map(item => (
           <Link className='navigation__item' key={item.path} to={item.path}>{item.display}</Link>
         ))}
+        {currentUser?.role === 'admin' && <Link to='/dashboard' className='navigation__item'>Dashboard</Link>}
       </div>
       <div className='navigation--right'>
         <div className='navigation__item' id='cart__icon' onClick={()=>dispatch(manageSideCartVisible(!isSideCartVisible))}>

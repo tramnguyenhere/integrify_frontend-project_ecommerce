@@ -3,12 +3,12 @@ import {
   createAction,
   createAsyncThunk,
   createSlice,
-} from '@reduxjs/toolkit';
-import axios, { AxiosError } from 'axios';
+} from "@reduxjs/toolkit";
+import axios, { AxiosError } from "axios";
 
-import { User } from '../../types/User';
-import { UserUpdate } from '../../types/UserUpdate';
-import { UserCredential } from '../../types/UserCredential';
+import { User } from "../../types/User";
+import { UserUpdate } from "../../types/UserUpdate";
+import { UserCredential } from "../../types/UserCredential";
 
 interface UserReducer {
   users: User[];
@@ -20,10 +20,10 @@ interface UserReducer {
 const initialState: UserReducer = {
   users: [],
   loading: false,
-  error: '',
+  error: "",
 };
 
-export const fetchAllUsers = createAsyncThunk('fetchAllUsers', async () => {
+export const fetchAllUsers = createAsyncThunk("fetchAllUsers", async () => {
   try {
     const result = await axios.get<User[]>(
       `https://api.escuelajs.co/api/v1/users`
@@ -37,11 +37,11 @@ export const fetchAllUsers = createAsyncThunk('fetchAllUsers', async () => {
 });
 
 export const authenticate = createAsyncThunk(
-  'authenticate',
+  "authenticate",
   async (access_token: string) => {
     try {
       const authentication = await axios.get<User>(
-        'https://api.escuelajs.co/api/v1/auth/profile',
+        "https://api.escuelajs.co/api/v1/auth/profile",
         {
           headers: {
             Authorization: `Bearer ${access_token}`,
@@ -57,15 +57,18 @@ export const authenticate = createAsyncThunk(
 );
 
 export const login = createAsyncThunk(
-  'login',
+  "login",
   async ({ email, password }: UserCredential, { dispatch }) => {
     try {
       const result = await axios.post<{ access_token: string }>(
-        'https://api.escuelajs.co/api/v1/auth/login',
+        "https://api.escuelajs.co/api/v1/auth/login",
         { email, password }
       );
-      localStorage.setItem('token', result.data.access_token);
-      localStorage.setItem('userCredential',  JSON.stringify({ email: email, password: password }));
+      localStorage.setItem("token", result.data.access_token);
+      localStorage.setItem(
+        "userCredential",
+        JSON.stringify({ email: email, password: password })
+      );
 
       const authentication = await dispatch(
         authenticate(result.data.access_token)
@@ -73,20 +76,20 @@ export const login = createAsyncThunk(
       return authentication.payload as User;
     } catch (e) {
       const error = e as AxiosError;
-      alert('Wrong email or password. Please login again');
+      alert("Wrong email or password. Please login again");
       return error;
     }
   }
 );
 
-export const logout = createAction('logout')
+export const logout = createAction("logout");
 
 export const createNewUser = createAsyncThunk(
-  'createNewUser',
+  "createNewUser",
   async (user: User) => {
     try {
       const createUserResponse = await axios.post(
-        'https://api.escuelajs.co/api/v1/users/',
+        "https://api.escuelajs.co/api/v1/users/",
         user
       );
       return createUserResponse.data;
@@ -98,25 +101,23 @@ export const createNewUser = createAsyncThunk(
 );
 
 export const updateUser = createAsyncThunk(
-  'updateUser',
+  "updateUser",
   async (updatedUser: UserUpdate) => {
     try {
       const updateUserResponse = await axios.put(
         `https://api.escuelajs.co/api/v1/users/${updatedUser.id}`,
         updatedUser.update
       );
-      return updateUserResponse.data
+      return updateUserResponse.data;
     } catch (e) {
       const error = e as AxiosError;
       return error;
     }
   }
-)
-
-
+);
 
 const usersSlice = createSlice({
-  name: 'users',
+  name: "users",
   initialState,
   reducers: {
     createUser: (state, action: PayloadAction<User>) => {
@@ -125,8 +126,8 @@ const usersSlice = createSlice({
     emptyUsersReducer: (state) => {
       state.users = [];
     },
-    sortByEmail: (state, action: PayloadAction<'asc' | 'desc'>) => {
-      if (action.payload === 'asc') {
+    sortByEmail: (state, action: PayloadAction<"asc" | "desc">) => {
+      if (action.payload === "asc") {
         state.users.sort((a, b) => a.email.localeCompare(b.email));
       } else {
         state.users.sort((a, b) => b.email.localeCompare(a.email));
@@ -147,13 +148,12 @@ const usersSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchAllUsers.rejected, (state, action) => {
-        state.error = 'Cannot fetch data';
+        state.error = "Cannot fetch data";
       })
       .addCase(createNewUser.fulfilled, (state, action) => {
         if (action.payload instanceof AxiosError) {
           state.error = action.payload.message;
         } else {
-          
           state.users.push(action.payload);
         }
         state.loading = false;
@@ -162,21 +162,20 @@ const usersSlice = createSlice({
         state.loading = true;
       })
       .addCase(createNewUser.rejected, (state, action) => {
-        state.error = 'Cannot create new user';
+        state.error = "Cannot create new user";
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         if (action.payload instanceof AxiosError) {
           state.error = action.payload.message;
         } else {
-          
           const users = state.users.map((user) => {
             if (user.id === action.payload.id) {
               return { ...user, ...action.payload };
             }
             return user;
           });
-          state.currentUser = action.payload
-          state.users = users
+          state.currentUser = action.payload;
+          state.users = users;
         }
         state.loading = false;
       })
@@ -184,7 +183,7 @@ const usersSlice = createSlice({
         state.loading = true;
       })
       .addCase(updateUser.rejected, (state) => {
-        state.error = 'Cannot update user';
+        state.error = "Cannot update user";
       })
       .addCase(login.fulfilled, (state, action) => {
         if (action.payload instanceof AxiosError) {
@@ -204,7 +203,7 @@ const usersSlice = createSlice({
       })
       .addCase(logout, (state) => {
         state.currentUser = undefined;
-        localStorage.removeItem('token')
+        localStorage.removeItem("token");
       });
   },
 });

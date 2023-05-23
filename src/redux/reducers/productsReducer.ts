@@ -1,11 +1,11 @@
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios, { AxiosError } from 'axios';
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios, { AxiosError } from "axios";
 
-import { Product } from '../../types/Product';
-import { ProductUpdate } from '../../types/ProductUpdate';
-import { NewProduct } from '../../types/NewProduct';
+import { Product } from "../../types/Product";
+import { ProductUpdate } from "../../types/ProductUpdate";
+import { NewProduct } from "../../types/NewProduct";
 
-const baseUrl = 'https://api.escuelajs.co/api/v1/products';
+const baseUrl = "https://api.escuelajs.co/api/v1/products";
 
 const initialState: {
   products: Product[];
@@ -16,11 +16,11 @@ const initialState: {
   products: [],
   filteredProducts: [],
   loading: false,
-  error: '',
+  error: "",
 };
 
 export const fetchAllProducts = createAsyncThunk(
-  'fetchAllProducts',
+  "fetchAllProducts",
   async () => {
     try {
       const result = await axios.get<Product[]>(baseUrl);
@@ -32,7 +32,7 @@ export const fetchAllProducts = createAsyncThunk(
   }
 );
 export const fetchSingleProductById = createAsyncThunk(
-  'fetchSingleProductById',
+  "fetchSingleProductById",
   async (productId: number) => {
     try {
       const result = await axios.get<Product>(`${baseUrl}/${productId}`);
@@ -45,7 +45,7 @@ export const fetchSingleProductById = createAsyncThunk(
 );
 
 export const createNewProduct = createAsyncThunk(
-  'createNewProduct',
+  "createNewProduct",
   async (product: NewProduct) => {
     try {
       const createProductResponse = await axios.post(baseUrl, product);
@@ -58,7 +58,7 @@ export const createNewProduct = createAsyncThunk(
 );
 
 export const updateSingleProduct = createAsyncThunk(
-  'updateSingleProduct',
+  "updateSingleProduct",
   async (updatedProduct: ProductUpdate) => {
     try {
       const result = await axios.put(
@@ -74,7 +74,7 @@ export const updateSingleProduct = createAsyncThunk(
 );
 
 export const deleteSingleProduct = createAsyncThunk(
-  'deleteSingleProduct',
+  "deleteSingleProduct",
   async (productId: number) => {
     try {
       const result = await axios.delete(`${baseUrl}/${productId}`);
@@ -87,7 +87,7 @@ export const deleteSingleProduct = createAsyncThunk(
 );
 
 const productsSlice = createSlice({
-  name: 'products',
+  name: "products",
   initialState,
   reducers: {
     setFilteredProducts: (state, action: PayloadAction<Product[]>) => {
@@ -108,7 +108,7 @@ const productsSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchAllProducts.rejected, (state, action) => {
-        state.error = 'Cannot fetch data';
+        state.error = "Cannot fetch data";
       })
       .addCase(fetchSingleProductById.fulfilled, (state, action) => {
         if (action.payload instanceof AxiosError) {
@@ -122,7 +122,7 @@ const productsSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchSingleProductById.rejected, (state, action) => {
-        state.error = 'Cannot fetch data';
+        state.error = "Cannot fetch data";
       })
       .addCase(createNewProduct.fulfilled, (state, action) => {
         if (action.payload instanceof AxiosError) {
@@ -136,7 +136,7 @@ const productsSlice = createSlice({
         state.loading = true;
       })
       .addCase(createNewProduct.rejected, (state, action) => {
-        state.error = 'Cannot create new product';
+        state.error = "Cannot create new product";
       })
       .addCase(updateSingleProduct.fulfilled, (state, action) => {
         if (action.payload instanceof AxiosError) {
@@ -156,7 +156,7 @@ const productsSlice = createSlice({
         state.loading = true;
       })
       .addCase(updateSingleProduct.rejected, (state) => {
-        state.error = 'Cannot update product';
+        state.error = "Cannot update product";
       })
       .addCase(deleteSingleProduct.fulfilled, (state, action) => {
         if (action.payload instanceof AxiosError) {
@@ -174,7 +174,7 @@ const productsSlice = createSlice({
         state.loading = true;
       })
       .addCase(deleteSingleProduct.rejected, (state) => {
-        state.error = 'Cannot update product';
+        state.error = "Cannot update product";
       });
   },
 });

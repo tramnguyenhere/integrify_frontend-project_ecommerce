@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import Products from '../Products';
+import Products from "../Products";
 
 const ProductManagement = () => {
   return (

@@ -1,0 +1,17 @@
+@use '../variables/colors';
+
+.dashboard {
+    display: flex;
+    margin: 2rem;
+
+    &__navigation {
+        display: flex;
+        flex-direction: column;
+        height: 30vh;
+        justify-content: space-evenly;
+        align-items: center;
+        width: fit-content;
+        padding: 2rem;
+        background: colors.$color--white;
+    }
+}

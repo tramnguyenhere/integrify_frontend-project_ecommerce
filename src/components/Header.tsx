@@ -28,6 +28,7 @@ const navigation_link = [
 
 const Header = () => {
   const isSideCartVisible = useAppSelector(state => state.cart.isSideCartVisible)
+  const currentUser = useAppSelector((state) => state.users.currentUser);
   const dispatch = useAppDispatch()
   const { totalQuantity }: CartType = useAppSelector(
     (state) => state.cart
@@ -57,9 +58,14 @@ const Header = () => {
           <p className='cart__badge'>{totalQuantityUI}</p>
         </div>
         <div id='user'>
-          <Link to='/login'>
-            <i className="fa-solid fa-user navigation__item"></i>
+          {currentUser ? (
+            <Link to='/user' className='fit-button__primary'>Hi, {currentUser.name}!</Link>
+          ) : (
+            <Link to='/login'>
+            <i className="fa-solid fa-user navigation__item"/>
           </Link>
+          )}
+          	
         </div>
       </div>
     </header>

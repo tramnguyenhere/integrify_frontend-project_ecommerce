@@ -1,6 +1,6 @@
 import React from 'react'
 import Helmet from '../components/Helmet'
-import AddressForm from '../components/AddressForm'
+import AddressForm from '../components/Form/AddressForm'
 import useAppSelector from '../hooks/useAppSelector'
 
 const Checkout = () => {

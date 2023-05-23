@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Review } from '../types/Review';
-import useAppDispatch from '../hooks/useAppDispatch';
-import { appendReview } from '../redux/reducers/reviewReducer';
+import { Review } from '../../types/Review';
+import useAppDispatch from '../../hooks/useAppDispatch';
+import { appendReview } from '../../redux/reducers/reviewReducer';
 
 interface ReviewFormProps {
   productId?: number;

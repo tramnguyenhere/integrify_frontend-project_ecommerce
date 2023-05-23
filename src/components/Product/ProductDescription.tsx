@@ -4,7 +4,7 @@ import SingleReview from '../SingleReview'
 import { Review } from '../../types/Review'
 import { Product } from '../../types/Product'
 import useAppSelector from '../../hooks/useAppSelector'
-import ReviewForm from '../ReviewForm'
+import ReviewForm from '../Form/ReviewForm'
 
 interface ProductDescriptionProps {
     selectedProduct?: Product

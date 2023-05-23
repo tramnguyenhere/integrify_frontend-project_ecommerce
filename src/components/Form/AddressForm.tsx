@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 
-import { AddressType } from "../types/Address";
+import { AddressType } from "../../types/Address";
 
 interface AddressFormProps {
   cartId?: string

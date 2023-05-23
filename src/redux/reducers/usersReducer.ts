@@ -29,8 +29,6 @@ export const fetchAllUsers = createAsyncThunk('fetchAllUsers', async () => {
       `https://api.escuelajs.co/api/v1/users`
     );
 
-    console.log(result.data);
-
     return result.data;
   } catch (e) {
     const error = e as AxiosError;
@@ -83,7 +81,7 @@ export const logout = createAction('logout');
 
 export const createNewUser = createAsyncThunk(
   'createNewUser',
-  async (user: User, thunkAPI) => {
+  async (user: User) => {
     try {
       const createUserResponse = await axios.post(
         'https://api.escuelajs.co/api/v1/users/',
@@ -92,10 +90,28 @@ export const createNewUser = createAsyncThunk(
       return createUserResponse.data;
     } catch (e) {
       const error = e as AxiosError;
-      return thunkAPI.rejectWithValue(error);
+      return error;
     }
   }
 );
+
+export const updateUser = createAsyncThunk(
+  'updateUser',
+  async (updatedUser: UserUpdate) => {
+    try {
+      const updateUserResponse: any = await axios.put(
+        `https://api.escuelajs.co/api/v1/users/${updatedUser.id}`,
+        updatedUser.update
+      );
+      return updateUserResponse.data
+    } catch (e) {
+      const error = e as AxiosError;
+      return error;
+    }
+  }
+)
+
+
 
 const usersSlice = createSlice({
   name: 'users',
@@ -106,18 +122,6 @@ const usersSlice = createSlice({
     },
     emptyUsersReducer: (state) => {
       state.users = [];
-    },
-    updateOneUser: (state, action: PayloadAction<UserUpdate>) => {
-      const users = state.users.map((user) => {
-        if (user.id === action.payload.id) {
-          return { ...user, ...action.payload.update };
-        }
-        return user;
-      });
-      return {
-        ...state,
-        users,
-      };
     },
     sortByEmail: (state, action: PayloadAction<'asc' | 'desc'>) => {
       if (action.payload === 'asc') {
@@ -147,9 +151,32 @@ const usersSlice = createSlice({
         if (action.payload instanceof AxiosError) {
           state.error = action.payload.message;
         } else {
+          
           state.users.push(action.payload);
         }
         state.loading = false;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        if (action.payload instanceof AxiosError) {
+          state.error = action.payload.message;
+        } else {
+          
+          const users = state.users.map((user) => {
+            if (user.id === action.payload.id) {
+              return { ...user, ...action.payload };
+            }
+            return user;
+          });
+          state.currentUser = action.payload
+          state.users = users
+        }
+        state.loading = false;
+      })
+      .addCase(updateUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(updateUser.rejected, (state) => {
+        state.error = 'Cannot update user';
       })
       .addCase(login.fulfilled, (state, action) => {
         if (action.payload instanceof AxiosError) {
@@ -174,6 +201,6 @@ const usersSlice = createSlice({
 });
 
 const usersReducer = usersSlice.reducer;
-export const { createUser, emptyUsersReducer, updateOneUser, sortByEmail } =
+export const { createUser, emptyUsersReducer, sortByEmail } =
   usersSlice.actions;
-export default usersReducer; // once per file
+export default usersReducer;

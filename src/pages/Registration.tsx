@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { User } from '../types/User';
@@ -17,6 +17,7 @@ const Registration = () => {
   const { users } = useAppSelector((state) => state.users);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate()
 
   const onSubmit = (data: User) => {
     if (users.find((user) => user.email === data.email)) {
@@ -25,6 +26,7 @@ const Registration = () => {
     }
     const newUser = { ...data };
     dispatch(createNewUser(newUser));
+    navigate('/login')
   };
 
   return (

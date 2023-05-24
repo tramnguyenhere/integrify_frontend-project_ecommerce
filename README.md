@@ -1,51 +1,183 @@
-# Front-end Project
+# Ecommerce website - Shop Hive
 
-![React](https://img.shields.io/badge/React-v.18-blue)
-![Redux toolkit](https://img.shields.io/badge/RTK-v.1-purple)
-![TypeScript](https://img.shields.io/badge/TypeScript-v.4-green)
-![SASS](https://img.shields.io/badge/SASS-v.1-hotpink)
+## Link to the demo
 
-This project requires implementation of TypeScript and SASS.
+[](https://integrify-breweries-app.vercel.app/)
 
-## Requirement
+## Table of content
 
-1. Use the API endpoint [https://fakeapi.platzi.com/](https://fakeapi.platzi.com/) to create an e-commerce website. Read the documentation and learn how to use the different endpoints.
-2. Create at lease 4 pages (can be more if you want): Home page, product page,
-   profile page (only available if user logins), and cart page (cart could be a page or a modal)
-3. Create Redux store for following features:
-   - product reducer: get all products, find a single products, sort products by
-     categories, sort products by price. Create, update and delete a product (enable update & delete features only for admin of the webapp. For example, you can check if user is your admin account before let them delete product)
-   - user reducer: Register and Login
-   - cart reducer: add product to cart, remove products, update products's quantity in cart
-4. When adding routers to your application, programatically set certain routes to be private. For example, route to user profile page should not be accessible if user has not logged in.
-5. Deploy the application and rewrite README file.
+- [Technologies](#technologies)
+- [Project structure](#project-structure)
+- [Getting started](#getting-started)
 
-## Bonus
+<a name="technologies"></a>
 
-1. Use context API to switch theme
-2. Implement unit testing for the reducers
+## Technologies
 
-## Instruction to start the project
+- TypeScript
+- React.js
+- Redux Toolkits
+- SASS
 
-In the project directory, you can run:
+<a name="project-structure"></a>
 
-### `npm install`
+## Project structure
 
-Install all the dependencies
+```
+│   .gitignore
+│   package-lock.json
+│   package.json
+│   README.md
+│   tsconfig.json
+│
+├───public
+│       favicon.ico
+│       index.html
+│       robots.txt
+│
+└───src
+    │   .prettierignore
+    │   App.tsx
+    │   index.scss
+    │   index.tsx
+    │   prettierrc.json
+    │   react-app-env.d.ts
+    │   reportWebVitals.ts
+    │   setupTests.ts
+    │
+    ├───assets
+    │   ├───images
+    │   │   │   hero-banner.jpg
+    │   │   │   logo.png
+    │   │   │
+    │   │   └───payment
+    │   │           nordea.png
+    │   │           op.png
+    │   │           paypal.png
+    │   │
+    │   └───styles
+    │       │   styles.scss
+    │       │
+    │       ├───components
+    │       │       _buttons.scss
+    │       │       _categories.scss
+    │       │       _error.scss
+    │       │       _footer.scss
+    │       │       _form.scss
+    │       │       _header.scss
+    │       │       _loader.scss
+    │       │       _pagination.scss
+    │       │       _productCard.scss
+    │       │       _quantityButton.scss
+    │       │       _searchBar.scss
+    │       │       _sideCart.scss
+    │       │       _singleReview.scss
+    │       │
+    │       ├───mixins
+    │       │       _buttons.scss
+    │       │
+    │       ├───pages
+    │       │       _cart.scss
+    │       │       _checkout.scss
+    │       │       _dashboard.scss
+    │       │       _home.scss
+    │       │       _login.scss
+    │       │       _productDetail.scss
+    │       │       _products.scss
+    │       │       _registration.scss
+    │       │       _userProfile.scss
+    │       │
+    │       └───variables
+    │               _animation.scss
+    │               _border.scss
+    │               _colors.scss
+    │               _font.scss
+    │
+    ├───components
+    │   │   Category.tsx
+    │   │   Footer.tsx
+    │   │   Header.tsx
+    │   │   Helmet.tsx
+    │   │   Layout.tsx
+    │   │   Pagination.tsx
+    │   │   SearchBar.tsx
+    │   │   SingleReview.tsx
+    │   │
+    │   ├───Cart
+    │   │       Cart.tsx
+    │   │       QuantityButton.tsx
+    │   │       SideCartItem.tsx
+    │   │
+    │   ├───Form
+    │   │       AddressForm.tsx
+    │   │       CreateProductForm.tsx
+    │   │       EditProductForm.tsx
+    │   │       EditUserForm.tsx
+    │   │       LoginForm.tsx
+    │   │       RegisterForm.tsx
+    │   │       ReviewForm.tsx
+    │   │
+    │   └───Product
+    │           ProductCard.tsx
+    │           ProductDescription.tsx
+    │           ProductList.tsx
+    │           ProductMainInfo.tsx
+    │
+    ├───hooks
+    │       useAppDispatch.ts
+    │       useAppSelector.ts
+    │
+    ├───pages
+    │   │   Cart.tsx
+    │   │   Checkout.tsx
+    │   │   Error.tsx
+    │   │   Home.tsx
+    │   │   Loading.tsx
+    │   │   Login.tsx
+    │   │   ProductDetail.tsx
+    │   │   Products.tsx
+    │   │   Registration.tsx
+    │   │   UserProfile.tsx
+    │   │
+    │   └───Admin
+    │           Dashboard.tsx
+    │           ProductManagement.tsx
+    │
+    ├───redux
+    │   │   store.ts
+    │   │
+    │   └───reducers
+    │           cartReducer.ts
+    │           categoriesReducer.ts
+    │           productsReducer.ts
+    │           reviewReducer.ts
+    │           usersReducer.ts
+    │
+    ├───routes
+    │       Routers.tsx
+    │
+    ├───types
+    │       Address.ts
+    │       Cart.ts
+    │       Category.ts
+    │       NewProduct.ts
+    │       Product.ts
+    │       ProductUpdate.ts
+    │       Review.ts
+    │       User.ts
+    │       UserCredential.ts
+    │       UserUpdate.ts
+    │
+    └───utils
+            hideEmail.ts
+```
 
-### `npm start`
+<a name="getting-started"></a>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting started
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Clone the repository from github:
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+git clone https://github.com/tramnguyenhere/integrify_frontend-project_ecommerce.git
+```

@@ -13,7 +13,7 @@ interface ProductDescriptionProps {
 const ProductDescription = ({ selectedProduct }: ProductDescriptionProps) => {
   const [tab, setTab] = useState("description");
   const reviews = useAppSelector((state) => state.reviews.reviews).filter(
-    (review) => review.productId === selectedProduct?.id
+    (review: Review) => review.productId === selectedProduct?.id
   );
 
   return (

@@ -1,13 +1,9 @@
 import React from "react";
-import Helmet from "../../components/Helmet";
-import useAppSelector from "../../hooks/useAppSelector";
 import { Link } from "react-router-dom";
 
+import Helmet from "../../components/Helmet";
+
 const Dashboard = () => {
-  const { products, loading, error } = useAppSelector(
-    (state) => state.products
-  );
-  const { categories } = useAppSelector((state) => state.categories);
 
   return (
     <Helmet title="Dashboard">

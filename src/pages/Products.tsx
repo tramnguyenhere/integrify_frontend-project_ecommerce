@@ -81,7 +81,7 @@ const Products = () => {
         )}
         {createProductUI && (
           <div>
-            <div className='overlay'></div>
+            <div className='overlay' onClick={()=>setCreateProductUI(false)}></div>
             <CreateProductForm setCreateProductUI={setCreateProductUI} />
           </div>
         )}

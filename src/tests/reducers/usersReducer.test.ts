@@ -1,12 +1,10 @@
 import usersReducer, {
   createUser,
   emptyUsersReducer,
-    sortByEmail,
+  sortByEmail,
   fetchAllUsers,
-  updateUser,
   login,
 } from '../../redux/reducers/usersReducer';
-import { userRoleEnum } from '../../types/User';
 import { user1, user2, user3 } from '../data/users';
 import userServer from '../servers/userServer';
 import store from '../shared/store';
@@ -65,19 +63,21 @@ describe('usersReducer', () => {
     expect(store.getState().usersReducer.loading).toBeFalsy();
     expect(store.getState().usersReducer.error).toBeFalsy(); //empty string is interpreted as falsy value if JS
   });
-    
-  test("Check should fetch users in pending state", () => {
-    const state = usersReducer(undefined, fetchAllUsers.pending)
-    expect(state).toEqual({ users: [], loading: true, error: '' })
-})
-    
-  test("Check if existing user can login", async () => {
-    await store.dispatch(login({
-        email: "john@mail.com",
-        password: "changeme"
-    }))
-    expect(store.getState().usersReducer.currentUser).toBeDefined()
-})
+
+  test('Check should fetch users in pending state', () => {
+    const state = usersReducer(undefined, fetchAllUsers.pending);
+    expect(state).toEqual({ users: [], loading: true, error: '' });
+  });
+
+  test('Check if existing user can login', async () => {
+    await store.dispatch(
+      login({
+        email: 'john@mail.com',
+        password: 'changeme',
+      })
+    );
+    expect(store.getState().usersReducer.currentUser).toBeDefined();
+  });
 
   it('should handle sortByEmail (ascending)', () => {
     const users = [user3, user2, user1];

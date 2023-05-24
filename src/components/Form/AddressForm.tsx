@@ -10,7 +10,7 @@ const AddressForm = ({ cartId }: { cartId?: string }) => {
   } = useForm<AddressType>();
 
   const onSubmit = (data: AddressType) => {
-    console.log(data, cartId);
+    // console.log(data, cartId);
   };
 
   return (

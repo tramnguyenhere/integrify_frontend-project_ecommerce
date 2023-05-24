@@ -25,6 +25,7 @@ const Cart = () => {
 
   const checkoutHandler = () => {
     dispatch(checkoutCart());
+    dispatch(manageSideCartVisible(false));
   };
 
   return (

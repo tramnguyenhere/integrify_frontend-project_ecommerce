@@ -13,9 +13,21 @@ const Dashboard = () => {
     <Helmet title="Dashboard">
       <div className="dashboard">
         <nav className="dashboard__navigation">
-          <Link className="fit-button__primary" to="/dashboard/user-management">User management</Link>
-          <Link className="fit-button__primary" to="/dashboard/product-management">Product management</Link>
-          <Link className="fit-button__primary" to="/dashboard/category-management">Category management</Link>
+          <Link className="fit-button__primary" to="/dashboard/user-management">
+            User management
+          </Link>
+          <Link
+            className="fit-button__primary"
+            to="/dashboard/product-management"
+          >
+            Product management
+          </Link>
+          <Link
+            className="fit-button__primary"
+            to="/dashboard/category-management"
+          >
+            Category management
+          </Link>
         </nav>
       </div>
     </Helmet>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Product } from "../../types/Product";
 import useAppDispatch from "../../hooks/useAppDispatch";
-import { addItemToCart } from "../../redux/reducers/cartReducer";
+import { addItemToCart, manageSideCartVisible } from "../../redux/reducers/cartReducer";
 import useAppSelector from "../../hooks/useAppSelector";
 import { userRoleEnum } from "../../types/User";
 
@@ -14,11 +14,18 @@ const ProductCard = ({ title, price, images, description, id }: Product) => {
 
   const cartHandler = () => {
     dispatch(addItemToCart({ title, price, images, description, id }));
+    dispatch(manageSideCartVisible(true))
   };
 
   return (
     <article className="product-card">
-      <Link to={`/products/${id}`}>
+      <Link
+        to={
+          currentUser?.role === userRoleEnum.Admin
+            ? `/dashboard/product-management/${id}`
+            : `/products/${id}`
+        }
+      >
         <img className="product-card__image" alt={title} src={images[0]} />
       </Link>
       <section className="product-card__information">

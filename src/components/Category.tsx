@@ -4,10 +4,9 @@ import Loading from "../pages/Loading";
 import Error from "../pages/Error";
 import useAppDispatch from "../hooks/useAppDispatch";
 import {
-  fetchAllProductsByCategoryId,
-  resetCategory,
   setCategory,
 } from "../redux/reducers/categoriesReducer";
+import { setFilteredProducts } from "../redux/reducers/productsReducer";
 
 const Category = () => {
   const { categories, selectedCategoryId, loading, error } = useAppSelector(
@@ -18,9 +17,10 @@ const Category = () => {
 
   useEffect(() => {
     if (selectedCategoryId === 0) {
-      dispatch(resetCategory(products));
+      dispatch(setFilteredProducts(products))
     } else {
-      dispatch(fetchAllProductsByCategoryId(selectedCategoryId));
+      const productsByCategory = products.filter(product => product.category?.id === selectedCategoryId)
+      dispatch(setFilteredProducts(productsByCategory));
     }
   }, [dispatch, products, selectedCategoryId]);
 

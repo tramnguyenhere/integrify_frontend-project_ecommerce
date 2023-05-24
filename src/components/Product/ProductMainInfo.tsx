@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Product } from "../../types/Product";
 import useAppDispatch from "../../hooks/useAppDispatch";
-import { addItemToCart } from "../../redux/reducers/cartReducer";
+import { addItemToCart, manageSideCartVisible } from "../../redux/reducers/cartReducer";
 import { Link } from "react-router-dom";
 import useAppSelector from "../../hooks/useAppSelector";
 import { userRoleEnum } from "../../types/User";
@@ -23,6 +23,7 @@ const ProductMainInfo = ({ selectedProduct }: ProductMainInfoProps) => {
   const cartHandler = () => {
     if (selectedProduct) {
       dispatch(addItemToCart(selectedProduct));
+      dispatch(manageSideCartVisible(true))
     }
   };
 

@@ -1,20 +1,17 @@
-import React from "react";
-import useAppDispatch from "../../hooks/useAppDispatch";
+import React from 'react';
+
+import useAppDispatch from '../../hooks/useAppDispatch';
 import {
   decreaseItemQuantity,
   increaseItemQuantity,
   setItemQuantity,
-} from "../../redux/reducers/cartReducer";
-import { CartItem } from "../../types/Cart";
+} from '../../redux/reducers/cartReducer';
+import { CartItem } from '../../types/Cart';
 
-interface QuantityButtonProps {
-  item: CartItem;
-}
-
-const QuantityButton = ({ item }: QuantityButtonProps) => {
+const QuantityButton = ({ item }: { item: CartItem }) => {
   const dispatch = useAppDispatch();
   return (
-    <div className="item-quantity__button">
+    <div className='item-quantity__button'>
       <button onClick={() => dispatch(decreaseItemQuantity(item.cartId))}>
         -
       </button>

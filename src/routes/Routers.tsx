@@ -11,8 +11,8 @@ import Login from "../pages/Login";
 import useAppSelector from "../hooks/useAppSelector";
 import UserProfile from "../pages/UserProfile";
 import Dashboard from "../pages/Admin/Dashboard";
-import ProductManagement from "../pages/Admin/ProductManagement";
 import EditProductForm from "../components/Form/EditProductForm";
+import CategoryManagement from "../pages/Admin/CategoryManagement";
 
 const Routers = () => {
   const currentUser = useAppSelector((state) => state.users.currentUser);
@@ -47,7 +47,17 @@ const Routers = () => {
         path="/dashboard/product-management"
         element={
           currentUser?.role === "admin" ? (
-            <ProductManagement />
+            <Products />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+      />
+      <Route
+        path="/dashboard/category-management"
+        element={
+          currentUser?.role === "admin" ? (
+            <CategoryManagement />
           ) : (
             <Navigate to="/login" />
           )

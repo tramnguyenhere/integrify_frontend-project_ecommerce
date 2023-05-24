@@ -3,6 +3,9 @@
 .dashboard {
   display: flex;
   margin: 2rem;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
 
   &__navigation {
     display: flex;

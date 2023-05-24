@@ -1,16 +1,14 @@
-import React, { useEffect } from "react";
-
-interface PaginationProps {
-  productsPerPage: number;
-  totalProducts: number;
-  paginate: (param: number) => void;
-}
+import React, { useEffect } from 'react';
 
 const Pagination = ({
   productsPerPage,
   totalProducts,
   paginate,
-}: PaginationProps) => {
+}: {
+  productsPerPage: number;
+  totalProducts: number;
+  paginate: (param: number) => void;
+}) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const pageNumbers = [];
 
@@ -23,12 +21,12 @@ const Pagination = ({
   }, [pageNumbers]);
 
   return (
-    <ul className="pagination">
+    <ul className='pagination'>
       {pageNumbers.map((number) => (
-        <li key={number} className="pagination__page-item">
+        <li key={number} className='pagination__page-item'>
           <button
             onClick={() => paginate(number)}
-            className="pagination__page-link fit-button__primary"
+            className='pagination__page-link fit-button__primary'
           >
             {number}
           </button>

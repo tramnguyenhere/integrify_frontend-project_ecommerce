@@ -21,7 +21,7 @@ const EditUserForm = ({
     e.preventDefault();
     if (currentUser) {
       const updatedUser: UserUpdate = {
-        id: currentUser.id,
+        id: Number(currentUser.id),
         update: { role: currentUser.role, name, email, password, avatar },
       };
       dispatch(updateUser(updatedUser));

@@ -122,7 +122,7 @@ const categoriesSlice = createSlice({
         state.loading = true;
       })
       .addCase(createNewCategory.rejected, (state, action) => {
-        state.error = "Cannot create new product";
+        state.error = "Cannot create new category";
       })
       .addCase(updateSingleCategory.fulfilled, (state, action) => {
         if (action.payload instanceof AxiosError) {

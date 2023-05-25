@@ -6,7 +6,6 @@ import categoriesReducer, {
   setCategory,
   updateSingleCategory,
 } from "../../redux/reducers/categoriesReducer";
-import { CategoryUpdate } from "../../types/CategoryUpdate";
 import { category1 } from "../data/categories";
 import categoryServer from "../servers/categoryServer";
 import store from "../shared/store";

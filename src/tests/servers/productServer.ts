@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+
 import { product1, product2, product3, product4 } from "../data/products";
 import { NewProduct } from "../../types/NewProduct";
 import { Product } from "../../types/Product";

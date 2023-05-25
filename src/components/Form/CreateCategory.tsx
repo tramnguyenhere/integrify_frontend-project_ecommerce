@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+
 import { Category } from "../../types/Category";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import { createNewCategory } from "../../redux/reducers/categoriesReducer";

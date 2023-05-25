@@ -1,7 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import useAppDispatch from "../../hooks/useAppDispatch";
 import { useNavigate } from "react-router-dom";
+
+import useAppDispatch from "../../hooks/useAppDispatch";
 import { createNewProduct } from "../../redux/reducers/productsReducer";
 import { NewProduct } from "../../types/NewProduct";
 import useAppSelector from "../../hooks/useAppSelector";

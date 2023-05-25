@@ -1,9 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
 import { User } from "../../types/User";
 import useAppSelector from "../../hooks/useAppSelector";
 import useAppDispatch from "../../hooks/useAppDispatch";
-import { useNavigate } from "react-router-dom";
 import { createNewUser } from "../../redux/reducers/usersReducer";
 
 const RegisterForm = () => {

@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+
 import { category1, category2, category3 } from "../data/categories";
 import { Category } from "../../types/Category";
 import store from "../shared/store";

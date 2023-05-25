@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+
 import { user1, user2, user3, user4 } from "../data/users";
 
 const userServer = setupServer(

@@ -1,12 +1,3 @@
-import cartReducer, {
-  addItemToCart,
-  removeItemFromCart,
-  setItemQuantity,
-  increaseItemQuantity,
-  decreaseItemQuantity,
-  manageSideCartVisible,
-  checkoutCart,
-} from "../../redux/reducers/cartReducer";
 import { CartType } from "../../types/Cart";
 import store from "../shared/store";
 
@@ -29,5 +20,4 @@ describe("cartReducer", () => {
     });
   });
 
-  // Add more test cases as needed for other actions and scenarios
 });

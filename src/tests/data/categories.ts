@@ -2,19 +2,19 @@ import { Category } from "../../types/Category";
 
 const category1: Category = {
     id: 1,
-    name: "A category",
+    name: "Clothes",
     image: ""
 }
 
 const category2: Category = {
     id: 2,
-    name: "B category",
+    name: "Electronic",
     image: ""
 }
 
 const category3: Category = {
     id: 3,
-    name: "C category",
+    name: "Souvenir",
     image: ""
 }
 

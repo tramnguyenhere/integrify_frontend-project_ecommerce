@@ -5,18 +5,15 @@ import { NewProduct } from '../../types/NewProduct'
 import { Product } from '../../types/Product'
 import categories from '../data/categories'
 
+const baseUrl = "https://api.escuelajs.co/api/v1/products"
+
 const productServer = setupServer(
-    // Describe the requests to mock.
-    rest.get("https://api.escuelajs.co/api/v1/products", (req, res, ctx) => {
-        /* 
-        req: to access params and wuiries of the request
-        res: method to send data back
-        ctx: method to construct the content of returned data */
+    rest.get(baseUrl, (req, res, ctx) => {
         return res(
             ctx.json([product1, product2, product3, product4]),
         )
     }),
-    rest.post("https://api.escuelajs.co/api/v1/products/", async (req, res, ctx) => {
+    rest.post(baseUrl, async (req, res, ctx) => {
         const newProduct = await req.json() as NewProduct
         const category = categories.find(c => c.id === newProduct.categoryId)
         const error: string[] = []

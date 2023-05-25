@@ -10,7 +10,7 @@ describe('usersReducer', () => {
     reviews: [review1, review2],
   };
 
-  test('Check initialState', () => {
+  test('check initialState', () => {
       const state = reviewReducer(undefined, { type: 'unknown' });
     expect(state).toEqual(
         initialState

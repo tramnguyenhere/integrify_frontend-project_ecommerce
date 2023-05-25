@@ -3,8 +3,10 @@ import { useForm } from 'react-hook-form';
 import { Category } from '../../types/Category';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import { createNewCategory } from '../../redux/reducers/categoriesReducer';
+import useAppSelector from '../../hooks/useAppSelector';
 
-const CreateCategory = ({setToggleCreateCategory}: {setToggleCreateCategory: React.Dispatch<React.SetStateAction<boolean>>}) => {
+const CreateCategory = ({ setToggleCreateCategory }: { setToggleCreateCategory: React.Dispatch<React.SetStateAction<boolean>> }) => {
+  const {categories}= useAppSelector(state=>state.categories)
     const {
       register,
       handleSubmit,
@@ -14,10 +16,16 @@ const CreateCategory = ({setToggleCreateCategory}: {setToggleCreateCategory: Rea
     const dispatch = useAppDispatch();
   
     const onSubmit = (data: Omit<Category, 'id'>) => {
-      const newCategory = {...data};
+      const newCategory = { ...data };
+      
+      if (categories.find(category => category.name.toLowerCase() === newCategory.name.toLowerCase())) {
+        console.error('This category has already been available');
+        alert('This category has already been available')
+      } else {
+        dispatch(createNewCategory(newCategory));
+        setToggleCreateCategory(false);
+      }
   
-      dispatch(createNewCategory(newCategory));
-      setToggleCreateCategory(false);
     };
   
     return (

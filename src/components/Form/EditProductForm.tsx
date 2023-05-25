@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-import { ProductUpdate } from '../../types/ProductUpdate';
-import useAppSelector from '../../hooks/useAppSelector';
-import useAppDispatch from '../../hooks/useAppDispatch';
+import { ProductUpdate } from "../../types/ProductUpdate";
+import useAppSelector from "../../hooks/useAppSelector";
+import useAppDispatch from "../../hooks/useAppDispatch";
 import {
   deleteSingleProduct,
   updateSingleProduct,
-} from '../../redux/reducers/productsReducer';
+} from "../../redux/reducers/productsReducer";
 
 const EditProductForm = () => {
   const dispatch = useAppDispatch();
@@ -44,44 +44,44 @@ const EditProductForm = () => {
         },
       };
       dispatch(updateSingleProduct(updatedProduct));
-      navigate('/products');
+      navigate("/products");
     }
   };
 
   const deleteProductHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     dispatch(deleteSingleProduct(Number(id)));
-    navigate('/products');
+    navigate("/products");
   };
 
   return (
-    <form className='form' onSubmit={editFormHandler}>
-      <div className='form__group'>
-        <h3 className='user-profile--edit__section__header'>Title</h3>
+    <form className="form" onSubmit={editFormHandler}>
+      <div className="form__group">
+        <h3 className="user-profile--edit__section__header">Title</h3>
         <input
-          placeholder='Change Title'
+          placeholder="Change Title"
           value={newTitle}
           onChange={(e) => setNewTitle(e.target.value)}
         />
       </div>
-      <div className='form__group'>
-        <h3 className='user-profile--edit__section__header'>Price</h3>
+      <div className="form__group">
+        <h3 className="user-profile--edit__section__header">Price</h3>
         <input
-          placeholder='Change price'
+          placeholder="Change price"
           value={newPrice}
           onChange={(e) => setNewPrice(Number(e.target.value))}
         />
       </div>
-      <div className='form__group'>
-        <h3 className='user-profile--edit__section__header'>Description</h3>
+      <div className="form__group">
+        <h3 className="user-profile--edit__section__header">Description</h3>
         <input
-          placeholder='Change description'
+          placeholder="Change description"
           value={newDescription}
           onChange={(e) => setNewDescription(e.target.value)}
         />
       </div>
-      <div className='form__group'>
-        <h3 className='user-profile--edit__section__header'>Category</h3>
+      <div className="form__group">
+        <h3 className="user-profile--edit__section__header">Category</h3>
         <select
           value={newCategory}
           onChange={(e) => setNewCategory(Number(e.target.value))}
@@ -96,19 +96,19 @@ const EditProductForm = () => {
           )}
         </select>
       </div>
-      <div className='form__group'>
-        <h3 className='user-profile--edit__section__header'>Image</h3>
+      <div className="form__group">
+        <h3 className="user-profile--edit__section__header">Image</h3>
         <input
-          placeholder='Change image'
+          placeholder="Change image"
           value={newImage[0]}
           onChange={(e) => setNewImage([e.target.value])}
         />
       </div>
-      <button className='full-width-button__primary' type='submit'>
+      <button className="full-width-button__primary" type="submit">
         Save
       </button>
       <button
-        className='full-width-button__secondary'
+        className="full-width-button__secondary"
         onClick={deleteProductHandler}
       >
         Delete

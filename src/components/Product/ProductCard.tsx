@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 
 import { Product } from "../../types/Product";
 import useAppDispatch from "../../hooks/useAppDispatch";
-import { addItemToCart, manageSideCartVisible } from "../../redux/reducers/cartReducer";
+import {
+  addItemToCart,
+  manageSideCartVisible,
+} from "../../redux/reducers/cartReducer";
 import useAppSelector from "../../hooks/useAppSelector";
 import { userRoleEnum } from "../../types/User";
 
@@ -14,7 +17,7 @@ const ProductCard = ({ title, price, images, description, id }: Product) => {
 
   const cartHandler = () => {
     dispatch(addItemToCart({ title, price, images, description, id }));
-    dispatch(manageSideCartVisible(true))
+    dispatch(manageSideCartVisible(true));
   };
 
   return (

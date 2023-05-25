@@ -5,11 +5,11 @@ import categoriesReducer, {
   fetchAllCategories,
   setCategory,
   updateSingleCategory,
-} from '../../redux/reducers/categoriesReducer';
-import { CategoryUpdate } from '../../types/CategoryUpdate';
-import { category1 } from '../data/categories';
-import categoryServer from '../servers/categoryServer';
-import store from '../shared/store';
+} from "../../redux/reducers/categoriesReducer";
+import { CategoryUpdate } from "../../types/CategoryUpdate";
+import { category1 } from "../data/categories";
+import categoryServer from "../servers/categoryServer";
+import store from "../shared/store";
 
 beforeAll(() => {
   categoryServer.listen();
@@ -24,34 +24,34 @@ beforeEach(() => {
   store.dispatch(createNewCategory(category1));
 });
 
-describe('Test categoriesReducer', () => {
+describe("Test categoriesReducer", () => {
   const initialState = {
     categories: [],
     selectedCategoryId: 0,
     loading: false,
-    error: '',
+    error: "",
     isCreateCategoryVisible: false,
   };
 
-  test('Check setCategory', () => {
+  test("Check setCategory", () => {
     const action = setCategory(1);
     const newState = categoriesReducer(initialState, action);
 
     expect(newState.selectedCategoryId).toEqual(1);
   });
 
-  test('Check fetchAllCategories', async () => {
+  test("Check fetchAllCategories", async () => {
     await store.dispatch(fetchAllCategories());
     expect(store.getState().categoriesReducer.categories.length).toBe(4); //There is category named "All" always available whenever we fetch other categories in the server
   });
 
-  test('Check createNewCategory', async () => {
+  test("Check createNewCategory", async () => {
     const expectedCategory = [
-      { id: 1, image: '', name: 'Clothes' },
-      { id: 0, image: 'image.jpg', name: 'New category' },
+      { id: 1, image: "", name: "Clothes" },
+      { id: 0, image: "image.jpg", name: "New category" },
     ];
     await store.dispatch(
-      createNewCategory({ name: 'New category', image: 'image.jpg' })
+      createNewCategory({ name: "New category", image: "image.jpg" })
     );
     expect(store.getState().categoriesReducer.categories.length).toBe(2);
     expect(store.getState().categoriesReducer.categories).toStrictEqual(
@@ -60,32 +60,32 @@ describe('Test categoriesReducer', () => {
   });
 
   // Update does not works
-  test('Check updateSingleCategory', async () => {
-    const updateCategory = { id: 0, update: { name: 'updated' } };
+  test("Check updateSingleCategory", async () => {
+    const updateCategory = { id: 0, update: { name: "updated" } };
 
     // Add the category
     await store.dispatch(
-      createNewCategory({ name: 'Electronic', image: 'image.jpg' })
+      createNewCategory({ name: "Electronic", image: "image.jpg" })
     );
     await store.dispatch(updateSingleCategory(updateCategory));
     expect(store.getState().categoriesReducer.categories.length).toBe(2);
     // expect(store.getState().categoriesReducer.categories).toStrictEqual(expectedCategory);
   });
 
-  test('Delete single category', async () => {
-    await store.dispatch(deleteSingleCategory(1))
+  test("Delete single category", async () => {
+    await store.dispatch(deleteSingleCategory(1));
     // console.log(store.getState().categoriesReducer);
   });
 
-  test('should handle errors when creating a category', async () => {
+  test("should handle errors when creating a category", async () => {
     await store.dispatch(
-      createNewCategory({ name: 'New category', image: 'image.jpg' })
+      createNewCategory({ name: "New category", image: "image.jpg" })
     );
     await store.dispatch(
-      createNewCategory({ name: 'New category', image: 'image.jpg' })
+      createNewCategory({ name: "New category", image: "image.jpg" })
     );
     expect(store.getState().categoriesReducer.error).toBe(
-      'Request failed with status code 400'
+      "Request failed with status code 400"
     );
   });
 });

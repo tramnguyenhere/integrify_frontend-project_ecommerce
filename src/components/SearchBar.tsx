@@ -1,6 +1,8 @@
 import React from "react";
 
-const SearchBar = ({ handleInputChange }:{
+const SearchBar = ({
+  handleInputChange,
+}: {
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
   return (

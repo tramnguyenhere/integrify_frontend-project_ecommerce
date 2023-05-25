@@ -15,11 +15,11 @@ const App = () => {
     dispatch(fetchAllUsers());
     dispatch(fetchAllCategories());
 
-    const isAuthenticated = localStorage.getItem("token")
-    const storedCredentials = localStorage.getItem("userCredential") !== null && JSON.parse(
-      localStorage.getItem("userCredential") ?? ''
-    );
-   
+    const isAuthenticated = localStorage.getItem("token");
+    const storedCredentials =
+      localStorage.getItem("userCredential") !== null &&
+      JSON.parse(localStorage.getItem("userCredential") ?? "");
+
     const email = storedCredentials.email;
     const password = storedCredentials.password;
 

@@ -11,13 +11,13 @@ const initialState: {
   selectedCategoryId: number;
   loading: boolean;
   error: string;
-  isCreateCategoryVisible: boolean
+  isCreateCategoryVisible: boolean;
 } = {
   categories: [],
   selectedCategoryId: 0,
   loading: false,
   error: "",
-  isCreateCategoryVisible: false
+  isCreateCategoryVisible: false,
 };
 
 export const fetchAllCategories = createAsyncThunk(
@@ -35,7 +35,7 @@ export const fetchAllCategories = createAsyncThunk(
 
 export const createNewCategory = createAsyncThunk(
   "createNewCategory",
-  async (category: Omit<Category, 'id'>) => {
+  async (category: Omit<Category, "id">) => {
     try {
       const createCategoryResponse = await axios.post(baseUrl, category);
       return createCategoryResponse.data;
@@ -74,7 +74,6 @@ export const deleteSingleCategory = createAsyncThunk(
     }
   }
 );
-
 
 const categoriesSlice = createSlice({
   name: "categories",

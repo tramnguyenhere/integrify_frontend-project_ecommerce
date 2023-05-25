@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
 const Pagination = ({
   productsPerPage,
@@ -21,12 +21,12 @@ const Pagination = ({
   }, [pageNumbers]);
 
   return (
-    <ul className='pagination'>
+    <ul className="pagination">
       {pageNumbers.map((number) => (
-        <li key={number} className='pagination__page-item'>
+        <li key={number} className="pagination__page-item">
           <button
             onClick={() => paginate(number)}
-            className='pagination__page-link fit-button__primary'
+            className="pagination__page-link fit-button__primary"
           >
             {number}
           </button>

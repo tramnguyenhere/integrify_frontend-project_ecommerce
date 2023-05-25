@@ -1,6 +1,6 @@
 export interface CategoryUpdate {
-    id: number,
-    update: {
-        name: string
-    }
+  id: number;
+  update: {
+    name: string;
+  };
 }

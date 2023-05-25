@@ -1,10 +1,10 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import useAppDispatch from '../../hooks/useAppDispatch';
-import { useNavigate } from 'react-router-dom';
-import { createNewProduct } from '../../redux/reducers/productsReducer';
-import { NewProduct } from '../../types/NewProduct';
-import useAppSelector from '../../hooks/useAppSelector';
+import React from "react";
+import { useForm } from "react-hook-form";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import { useNavigate } from "react-router-dom";
+import { createNewProduct } from "../../redux/reducers/productsReducer";
+import { NewProduct } from "../../types/NewProduct";
+import useAppSelector from "../../hooks/useAppSelector";
 
 const CreateProductForm = ({
   setCreateProductUI,
@@ -32,46 +32,46 @@ const CreateProductForm = ({
 
     dispatch(createNewProduct(newProduct));
     setCreateProductUI(false);
-    navigate('/products');
+    navigate("/products");
   };
 
   return (
-    <form className='form--pop-up form' onSubmit={handleSubmit(onSubmit)}>
-      <div className='form__group'>
+    <form className="form--pop-up form" onSubmit={handleSubmit(onSubmit)}>
+      <div className="form__group">
         <input
-          type='text'
-          placeholder='Title'
-          {...register('title', { required: true })}
+          type="text"
+          placeholder="Title"
+          {...register("title", { required: true })}
         />
         {errors.title && (
-          <span className='form--error'>This field is required!</span>
+          <span className="form--error">This field is required!</span>
         )}
       </div>
-      <div className='form__group'>
+      <div className="form__group">
         <input
-          type='number'
+          type="number"
           min={1}
-          placeholder='Price ($)'
-          {...register('price', { required: true, min: 1 })}
+          placeholder="Price ($)"
+          {...register("price", { required: true, min: 1 })}
         />
         {errors.price && (
-          <span className='form--error'>This field is required!</span>
+          <span className="form--error">This field is required!</span>
         )}
       </div>
-      <div className='form__group'>
+      <div className="form__group">
         <input
-          type='text'
+          type="text"
           maxLength={100}
-          placeholder='Description'
-          {...register('description', { required: true, maxLength: 100 })}
+          placeholder="Description"
+          {...register("description", { required: true, maxLength: 100 })}
         />
         {errors.description && (
-          <span className='form--error'>This field is required!</span>
+          <span className="form--error">This field is required!</span>
         )}
       </div>
-      <div className='form__group'>
-        <select {...register('categoryId', { required: true })}>
-          <option value='' disabled>
+      <div className="form__group">
+        <select {...register("categoryId", { required: true })}>
+          <option value="" disabled>
             Select a category
           </option>
           {categories.map(
@@ -84,20 +84,20 @@ const CreateProductForm = ({
           )}
         </select>
         {errors.categoryId && (
-          <span className='form--error'>This field is required!</span>
+          <span className="form--error">This field is required!</span>
         )}
       </div>
-      <div className='form__group'>
+      <div className="form__group">
         <input
-          type='url'
-          placeholder='Image URL'
-          {...register('images', { required: true })}
+          type="url"
+          placeholder="Image URL"
+          {...register("images", { required: true })}
         />
         {errors.images && (
-          <span className='form--error'>This field is required!</span>
+          <span className="form--error">This field is required!</span>
         )}
       </div>
-      <button type='submit' className='form__button'>
+      <button type="submit" className="form__button">
         Create Product
       </button>
     </form>

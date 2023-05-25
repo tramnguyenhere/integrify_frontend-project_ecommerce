@@ -1,8 +1,10 @@
 # Ecommerce website - Shop Hive
 
+An ecommerce website as final assignment for frontend section. On the web, customers can explore products, filter them in categories, leave reviews for products, add products to cart. They can also create a personal account and edit their profile. As an admin, client can add, edit, and delete products or categories.
+
 ## Link to the demo
 
-[](https://integrify-breweries-app.vercel.app/)
+[https://integrify-frontend-project-ecommerce.vercel.app](https://integrify-frontend-project-ecommerce.vercel.app)
 
 ## Table of content
 
@@ -72,6 +74,7 @@
     │       │       _searchBar.scss
     │       │       _sideCart.scss
     │       │       _singleReview.scss
+    │       │       _table.scss
     │       │
     │       ├───mixins
     │       │       _buttons.scss
@@ -110,7 +113,9 @@
     │   │
     │   ├───Form
     │   │       AddressForm.tsx
+    │   │       CreateCategory.tsx
     │   │       CreateProductForm.tsx
+    │   │       EditCategoryForm.tsx
     │   │       EditProductForm.tsx
     │   │       EditUserForm.tsx
     │   │       LoginForm.tsx
@@ -140,8 +145,8 @@
     │   │   UserProfile.tsx
     │   │
     │   └───Admin
+    │           CategoryManagement.tsx
     │           Dashboard.tsx
-    │           ProductManagement.tsx
     │
     ├───redux
     │   │   store.ts
@@ -156,10 +161,33 @@
     ├───routes
     │       Routers.tsx
     │
+    ├───tests
+    │   ├───data
+    │   │       categories.ts
+    │   │       products.ts
+    │   │       review.ts
+    │   │       users.ts
+    │   │
+    │   ├───reducers
+    │   │       cardReducer.test.ts
+    │   │       categoriesReducer.test.ts
+    │   │       productsReducer.test.ts
+    │   │       reviewReducer.test.ts
+    │   │       usersReducer.test.ts
+    │   │
+    │   ├───servers
+    │   │       categoryServer.ts
+    │   │       productServer.ts
+    │   │       userServer.ts
+    │   │
+    │   └───shared
+    │           store.ts
+    │
     ├───types
     │       Address.ts
     │       Cart.ts
     │       Category.ts
+    │       CategoryUpdate.ts
     │       NewProduct.ts
     │       Product.ts
     │       ProductUpdate.ts

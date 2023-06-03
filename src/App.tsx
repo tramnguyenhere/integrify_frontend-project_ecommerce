@@ -7,9 +7,9 @@ import { fetchAllUsers, login } from "./redux/reducers/usersReducer";
 import { fetchAllCategories } from "./redux/reducers/categoriesReducer";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Cart from "./pages/Cart";
 import Routes from "./routes/Routers";
 import "./assets/styles/styles.scss";
+import Cart from "./components/Cart/Cart";
 
 const App = () => {
   const isSideCartVisible = useAppSelector(

@@ -3,10 +3,15 @@ import React, { useState } from "react";
 import useAppSelector from "../../hooks/useAppSelector";
 import CreateCategory from "../../components/Form/CreateCategory";
 import EditCategoryForm from "../../components/Form/EditCategoryForm";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import { deleteSingleCategory } from "../../redux/reducers/categoriesReducer";
 
 const CategoryManagement = () => {
   const { categories } = useAppSelector((state) => state.categories);
   const [toggleCreateCategory, setToggleCreateCategory] = useState(false);
+
+  const dispatch = useAppDispatch()
+
   return (
     <div className="category-management">
       <button
@@ -27,7 +32,7 @@ const CategoryManagement = () => {
             <p>{category.name}</p>
             <div className="category-management__buttons">
               <EditCategoryForm category={category} />
-              <button className="category-management__button fit-button__primary">
+              <button className="category-management__button fit-button__primary" onClick={()=>dispatch(deleteSingleCategory(category.id))}>
                 Delete
               </button>
             </div>

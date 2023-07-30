@@ -48,7 +48,7 @@ const ProductCard = ({ title, price, images, description, id }: Product) => {
           <Link
             to={`/products/${id}`}
             id="more-details"
-              className="product-card__button"
+            className="product-card__button"
           >
             More details
           </Link>

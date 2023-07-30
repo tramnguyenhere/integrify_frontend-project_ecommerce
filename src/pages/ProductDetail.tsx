@@ -20,11 +20,11 @@ const ProductDetail = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchSingleProductById(Number(id)));
     window.scrollTo(0, 0);
+    dispatch(fetchSingleProductById(Number(id)));
   }, [dispatch, id]);
 
-  const selectedProduct = (filteredProducts && filteredProducts.find((item) => item.id === Number(id)));
+  const selectedProduct: Product = filteredProducts && filteredProducts[0];
   const relatedProducts = products.filter(
     (product) => product.category?.name === selectedProduct?.category?.name
   );
